@@ -50,3 +50,20 @@ Diagnostic probes use isolated data in artifacts. Automated tests suppress real
 notifications and audio. `jikanda.exe --probe-alarm=0` (or 1/2) explicitly previews
 one sound. Regenerate alarms with `python scripts/generate-alarms.py`; regenerate
 Windows icons with `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/export-app-icons.ps1`.
+
+## Prepare a Windows beta locally
+
+After checks, export icons, run the license reviews, and vendor all locked crates:
+
+```sh
+python scripts/review-licenses.py --fetch-missing
+python scripts/review-licenses.py --all-lockfile --fetch-missing
+cargo vendor --locked --versioned-dirs artifacts/vendor-0.1.0-beta.1
+python scripts/prepare-release.py
+```
+
+The preparer creates binary/source ZIPs and SHA256SUMS.txt in artifacts/releases.
+It does not upload or publish. Validate an extracted binary ZIP, build the source
+archive offline with an empty Cargo home, and require passing GitHub Actions before
+publishing the beta. The older package-windows.ps1/package-linux.sh scripts are
+historical internal-build helpers; they are not the public beta packager.

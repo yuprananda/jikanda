@@ -1,8 +1,8 @@
 # Jikanda 0.1.0-beta.1 release readiness
 
-Status: **Windows beta release candidate** for the maintainer-requested GitHub
-release. Public binary publication awaits the final draft review. This is not a
-claim of stable support on all Windows/Linux desktops.
+Status: **Windows beta** prepared for the maintainer-requested GitHub release.
+The checks below describe this beta; they do not claim stable support across all
+Windows/Linux desktops. Publication requires the linked CI checks to pass.
 
 ## Completed local checks
 
@@ -47,10 +47,16 @@ resolution. These are measurements on this machine, not guaranteed cross-device 
 
 ## Final preparation checks
 
-- Offline source build with an empty Cargo home: IN PROGRESS.
-- Extracted Windows package integration and checksum verification: PENDING.
-- GitHub Actions Windows/Linux build checks: PENDING.
-- Draft release assets/source/checksums: PENDING.
+- Offline source build with an empty Cargo home: **passed**, Rust 1.95 release build, 5m 57s.
+  Only the vendored archive supplied Cargo crates; no registry source cache was present.
+- Extracted Windows package integration: **passed**, including isolated data,
+  session/task/settings persistence and PNG exports. Optional shortcut script also passed.
+  Release ZIPs are CRC-checked and bound to SHA256SUMS.txt during final packaging.
+- GitHub Actions Windows/Linux build checks: [code baseline ed1b356](https://github.com/yuprananda/jikanda/actions/runs/42561825342).
+  A new Clippy lint in Rust 1.99 was corrected in an audio unit test; Windows release
+  runtime behavior was unchanged. Final release notes record the completed CI outcome.
+- Release assets: Windows x64 ZIP, complete vendored source ZIP, SHA256SUMS.txt,
+  plus public source/notes at the matching GitHub release tag. No user data is packaged.
 
 ## Beta limitations to disclose
 
