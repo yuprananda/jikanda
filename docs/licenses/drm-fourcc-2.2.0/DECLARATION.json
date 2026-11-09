@@ -1,0 +1,8 @@
+{
+  "note": "Inactive source only, not linked into Windows. Upstream omits standalone text; original source/headers and declared license retained. Canonical terms supplied without inventing copyright holders or dates.",
+  "declared_license": "MIT",
+  "authors_from_cargo": [
+    "Daniel Franklin <daniel@danielzfranklin.org>"
+  ],
+  "canonical_source": "https://github.com/spdx/license-list-data/blob/31846481de7ea17d92f2f46fad76abe58b2e9bb0/text/MIT.txt"
+}

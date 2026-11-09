@@ -1,0 +1,2256 @@
+{
+  "target": "x86_64-pc-windows-msvc",
+  "scope": "Actual cargo tree normal/build dependencies; not inactive optional packages",
+  "packages": [
+    {
+      "name": "accesskit",
+      "version": "0.24.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/AccessKit/accesskit",
+      "texts": "docs/licenses/accesskit-0.24.1",
+      "provenance": "Pinned upstream a55d3e1a18bb9ef0e4bccc9083fb13c3e0ad8969; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "accesskit_consumer",
+      "version": "0.38.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/AccessKit/accesskit",
+      "texts": "docs/licenses/accesskit_consumer-0.38.0",
+      "provenance": "Pinned upstream c88605b96d04431f9c3c792464a0f2f253480e94; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "accesskit_windows",
+      "version": "0.34.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/AccessKit/accesskit",
+      "texts": "docs/licenses/accesskit_windows-0.34.0",
+      "provenance": "Pinned upstream c88605b96d04431f9c3c792464a0f2f253480e94; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "accesskit_winit",
+      "version": "0.33.2",
+      "declared": "Apache-2.0",
+      "selected": "Apache-2.0",
+      "repository": "https://github.com/AccessKit/accesskit",
+      "texts": "docs/licenses/accesskit_winit-0.33.2",
+      "provenance": "Pinned upstream c88605b96d04431f9c3c792464a0f2f253480e94; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "adler2",
+      "version": "2.0.1",
+      "declared": "0BSD OR MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/oyvindln/adler2",
+      "texts": "docs/licenses/adler2-2.0.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "allocator-api2",
+      "version": "0.2.21",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/zakarumych/allocator-api2",
+      "texts": "docs/licenses/allocator-api2-0.2.21",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "annotate-snippets",
+      "version": "0.12.17",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/annotate-snippets-rs",
+      "texts": "docs/licenses/annotate-snippets-0.12.17",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "anstyle",
+      "version": "1.0.14",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-cli/anstyle.git",
+      "texts": "docs/licenses/anstyle-1.0.14",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "arboard",
+      "version": "3.7.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/1Password/arboard",
+      "texts": "docs/licenses/arboard-3.7.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "arrayref",
+      "version": "0.3.9",
+      "declared": "BSD-2-Clause",
+      "selected": "BSD-2-Clause",
+      "repository": "https://github.com/droundy/arrayref",
+      "texts": "docs/licenses/arrayref-0.3.9",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "arrayvec",
+      "version": "0.7.8",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/bluss/arrayvec",
+      "texts": "docs/licenses/arrayvec-0.7.8",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "autocfg",
+      "version": "1.5.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/cuviper/autocfg",
+      "texts": "docs/licenses/autocfg-1.5.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "base64",
+      "version": "0.23.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/marshallpierce/rust-base64",
+      "texts": "docs/licenses/base64-0.23.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "bitflags",
+      "version": "2.13.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/bitflags/bitflags",
+      "texts": "docs/licenses/bitflags-2.13.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "by_address",
+      "version": "1.2.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/mbrubeck/by_address",
+      "texts": "docs/licenses/by_address-1.2.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "bytemuck",
+      "version": "1.25.2",
+      "declared": "Zlib OR Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/Lokathor/bytemuck",
+      "texts": "docs/licenses/bytemuck-1.25.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "bytemuck_derive",
+      "version": "1.12.1",
+      "declared": "Zlib OR Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/Lokathor/bytemuck",
+      "texts": "docs/licenses/bytemuck_derive-1.12.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "byteorder-lite",
+      "version": "0.1.0",
+      "declared": "Unlicense OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/image-rs/byteorder-lite",
+      "texts": "docs/licenses/byteorder-lite-0.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "cfg-if",
+      "version": "1.0.5",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/cfg-if",
+      "texts": "docs/licenses/cfg-if-1.0.5",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "cfg_aliases",
+      "version": "0.2.2",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/katharostech/cfg_aliases",
+      "texts": "docs/licenses/cfg_aliases-0.2.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "chrono",
+      "version": "0.4.45",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/chronotope/chrono",
+      "texts": "docs/licenses/chrono-0.4.45",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "clipboard-win",
+      "version": "5.4.3",
+      "declared": "BSL-1.0",
+      "selected": "BSL-1.0",
+      "repository": "https://github.com/DoumanAsh/clipboard-win",
+      "texts": "docs/licenses/clipboard-win-5.4.3",
+      "provenance": "Pinned upstream ed27008ae5d1f10cfbb266de039f0fb35fd05a56; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "clru",
+      "version": "0.6.3",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/marmeladema/clru-rs",
+      "texts": "docs/licenses/clru-0.6.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "color_quant",
+      "version": "1.1.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/image-rs/color_quant.git",
+      "texts": "docs/licenses/color_quant-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "const-field-offset",
+      "version": "0.2.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/const-field-offset-0.2.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "const-field-offset-macro",
+      "version": "0.2.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/const-field-offset-macro-0.2.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "convert_case",
+      "version": "0.10.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/rutrum/convert-case",
+      "texts": "docs/licenses/convert_case-0.10.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "countme",
+      "version": "3.0.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/matklad/countme",
+      "texts": "docs/licenses/countme-3.0.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "crc32fast",
+      "version": "1.5.4",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/srijs/rust-crc32fast",
+      "texts": "docs/licenses/crc32fast-1.5.4",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "critical-section",
+      "version": "1.2.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-embedded/critical-section",
+      "texts": "docs/licenses/critical-section-1.2.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "crossbeam-channel",
+      "version": "0.5.17",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/crossbeam-rs/crossbeam",
+      "texts": "docs/licenses/crossbeam-channel-0.5.17",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "crossbeam-deque",
+      "version": "0.8.8",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/crossbeam-rs/crossbeam",
+      "texts": "docs/licenses/crossbeam-deque-0.8.8",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "crossbeam-epoch",
+      "version": "0.9.21",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/crossbeam-rs/crossbeam",
+      "texts": "docs/licenses/crossbeam-epoch-0.9.21",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "crossbeam-utils",
+      "version": "0.8.23",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/crossbeam-rs/crossbeam",
+      "texts": "docs/licenses/crossbeam-utils-0.8.23",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "cursor-icon",
+      "version": "1.2.0",
+      "declared": "MIT OR Apache-2.0 OR Zlib",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-windowing/cursor-icon",
+      "texts": "docs/licenses/cursor-icon-1.2.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "data-url",
+      "version": "0.3.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/servo/rust-url",
+      "texts": "docs/licenses/data-url-0.3.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "derive_more",
+      "version": "2.1.1",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/JelteF/derive_more",
+      "texts": "docs/licenses/derive_more-2.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "derive_more-impl",
+      "version": "2.1.1",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/JelteF/derive_more",
+      "texts": "docs/licenses/derive_more-impl-2.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "displaydoc",
+      "version": "0.2.7",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/yaahc/displaydoc",
+      "texts": "docs/licenses/displaydoc-0.2.7",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "dpi",
+      "version": "0.1.2",
+      "declared": "Apache-2.0 AND MIT",
+      "selected": "Apache-2.0 AND MIT",
+      "repository": "https://github.com/rust-windowing/winit",
+      "texts": "docs/licenses/dpi-0.1.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "either",
+      "version": "1.19.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rayon-rs/either",
+      "texts": "docs/licenses/either-1.19.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "equivalent",
+      "version": "1.0.3",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/indexmap-rs/equivalent",
+      "texts": "docs/licenses/equivalent-1.0.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "error-code",
+      "version": "3.4.0",
+      "declared": "BSL-1.0",
+      "selected": "BSL-1.0",
+      "repository": "https://github.com/DoumanAsh/error-code",
+      "texts": "docs/licenses/error-code-3.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "euclid",
+      "version": "0.22.14",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/servo/euclid",
+      "texts": "docs/licenses/euclid-0.22.14",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "fdeflate",
+      "version": "0.3.7",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/image-rs/fdeflate",
+      "texts": "docs/licenses/fdeflate-0.3.7",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "field-offset",
+      "version": "0.3.6",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/Diggsey/rust-field-offset",
+      "texts": "docs/licenses/field-offset-0.3.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "fixed_decimal",
+      "version": "0.7.3",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/fixed_decimal-0.7.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "flate2",
+      "version": "1.1.10",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/flate2-rs",
+      "texts": "docs/licenses/flate2-1.1.10",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "float-cmp",
+      "version": "0.9.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/mikedilger/float-cmp",
+      "texts": "docs/licenses/float-cmp-0.9.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "foldhash",
+      "version": "0.2.0",
+      "declared": "Zlib",
+      "selected": "Zlib",
+      "repository": "https://github.com/orlp/foldhash",
+      "texts": "docs/licenses/foldhash-0.2.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "font-types",
+      "version": "0.12.7",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/googlefonts/fontations",
+      "texts": "docs/licenses/font-types-0.12.7",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "fontdb",
+      "version": "0.24.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/RazrFalcon/fontdb",
+      "texts": "docs/licenses/fontdb-0.24.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "fontique",
+      "version": "0.11.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/parley",
+      "texts": "docs/licenses/fontique-0.11.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "form_urlencoded",
+      "version": "1.2.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/servo/rust-url",
+      "texts": "docs/licenses/form_urlencoded-1.2.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "gif",
+      "version": "0.14.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/image-rs/image-gif",
+      "texts": "docs/licenses/gif-0.14.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "harfrust",
+      "version": "0.12.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/harfbuzz/harfrust",
+      "texts": "docs/licenses/harfrust-0.12.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.14.5",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/hashbrown",
+      "texts": "docs/licenses/hashbrown-0.14.5",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.16.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/hashbrown",
+      "texts": "docs/licenses/hashbrown-0.16.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "hashbrown",
+      "version": "0.17.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/hashbrown",
+      "texts": "docs/licenses/hashbrown-0.17.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "heck",
+      "version": "0.5.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/withoutboats/heck",
+      "texts": "docs/licenses/heck-0.5.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "htmlparser",
+      "version": "0.2.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/jdrouet/htmlparser.git",
+      "texts": "docs/licenses/htmlparser-0.2.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "i-slint-backend-selector",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/i-slint-backend-selector-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "i-slint-backend-winit",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/i-slint-backend-winit-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "i-slint-common",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/i-slint-common-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "i-slint-compiler",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/i-slint-compiler-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "i-slint-core",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/i-slint-core-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "i-slint-core-macros",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/i-slint-core-macros-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "i-slint-renderer-software",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/i-slint-renderer-software-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_collections",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_collections-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_decimal",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_decimal-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_decimal_data",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_decimal_data-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_locale_core",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_locale_core-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_locale_fallback",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_locale_fallback-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_locale_fallback_data",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_locale_fallback_data-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_normalizer",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_normalizer-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_normalizer_data",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_normalizer_data-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_properties",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_properties-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_properties_data",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_properties_data-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_provider",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_provider-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_segmenter",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_segmenter-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "icu_segmenter_data",
+      "version": "2.4.0",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/icu_segmenter_data-2.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "idna",
+      "version": "1.1.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/servo/rust-url/",
+      "texts": "docs/licenses/idna-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "idna_adapter",
+      "version": "1.2.2",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/hsivonen/idna_adapter",
+      "texts": "docs/licenses/idna_adapter-1.2.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "image",
+      "version": "0.25.10",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/image-rs/image",
+      "texts": "docs/licenses/image-0.25.10",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "image-webp",
+      "version": "0.2.4",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/image-rs/image-webp",
+      "texts": "docs/licenses/image-webp-0.2.4",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "imagesize",
+      "version": "0.15.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/Roughsketch/imagesize",
+      "texts": "docs/licenses/imagesize-0.15.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "imgref",
+      "version": "1.12.3",
+      "declared": "CC0-1.0 OR Apache-2.0",
+      "selected": "Apache-2.0",
+      "repository": "https://github.com/kornelski/imgref",
+      "texts": "docs/licenses/imgref-1.12.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "indexmap",
+      "version": "2.14.2",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/indexmap-rs/indexmap",
+      "texts": "docs/licenses/indexmap-2.14.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "itertools",
+      "version": "0.15.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-itertools/itertools",
+      "texts": "docs/licenses/itertools-0.15.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "itoa",
+      "version": "1.0.18",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/itoa",
+      "texts": "docs/licenses/itoa-1.0.18",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "keyboard-types",
+      "version": "0.7.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/pyfisch/keyboard-types",
+      "texts": "docs/licenses/keyboard-types-0.7.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "kurbo",
+      "version": "0.13.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/kurbo",
+      "texts": "docs/licenses/kurbo-0.13.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "lazy_static",
+      "version": "1.5.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang-nursery/lazy-static.rs",
+      "texts": "docs/licenses/lazy_static-1.5.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "libm",
+      "version": "0.2.16",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/compiler-builtins",
+      "texts": "docs/licenses/libm-0.2.16",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "linebender_resource_handle",
+      "version": "0.1.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/raw_resource_handle",
+      "texts": "docs/licenses/linebender_resource_handle-0.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "litemap",
+      "version": "0.8.3",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/litemap-0.8.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "log",
+      "version": "0.4.35",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/log",
+      "texts": "docs/licenses/log-0.4.35",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "lyon_algorithms",
+      "version": "1.0.22",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/nical/lyon",
+      "texts": "docs/licenses/lyon_algorithms-1.0.22",
+      "provenance": "Pinned upstream db98d26a1a90076a7a894262dcb51117eef643c8; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "lyon_extra",
+      "version": "1.1.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/nical/lyon",
+      "texts": "docs/licenses/lyon_extra-1.1.0",
+      "provenance": "Pinned upstream 56219c95c658d4f39de7b190d98e57d5773ba241; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "lyon_geom",
+      "version": "1.0.20",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/nical/lyon",
+      "texts": "docs/licenses/lyon_geom-1.0.20",
+      "provenance": "Pinned upstream db98d26a1a90076a7a894262dcb51117eef643c8; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "lyon_path",
+      "version": "1.0.19",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/nical/lyon",
+      "texts": "docs/licenses/lyon_path-1.0.19",
+      "provenance": "Pinned upstream 56219c95c658d4f39de7b190d98e57d5773ba241; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "memchr",
+      "version": "2.8.3",
+      "declared": "Unlicense OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/BurntSushi/memchr",
+      "texts": "docs/licenses/memchr-2.8.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "memmap2",
+      "version": "0.9.12",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/RazrFalcon/memmap2-rs",
+      "texts": "docs/licenses/memmap2-0.9.12",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "memoffset",
+      "version": "0.9.1",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/Gilnaa/memoffset",
+      "texts": "docs/licenses/memoffset-0.9.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "miniz_oxide",
+      "version": "0.8.9",
+      "declared": "MIT OR Zlib OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
+      "texts": "docs/licenses/miniz_oxide-0.8.9",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "miniz_oxide",
+      "version": "0.9.1",
+      "declared": "MIT OR Zlib OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/Frommi/miniz_oxide/tree/master/miniz_oxide",
+      "texts": "docs/licenses/miniz_oxide-0.9.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "moxcms",
+      "version": "0.8.1",
+      "declared": "BSD-3-Clause OR Apache-2.0",
+      "selected": "Apache-2.0",
+      "repository": "https://github.com/awxkee/moxcms.git",
+      "texts": "docs/licenses/moxcms-0.8.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "muda",
+      "version": "0.19.3",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/tauri-apps/muda",
+      "texts": "docs/licenses/muda-0.19.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "natord",
+      "version": "1.0.9",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/lifthrasiir/rust-natord",
+      "texts": "docs/licenses/natord-1.0.9",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "notify-rust",
+      "version": "4.18.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/hoodie/notify-rust",
+      "texts": "docs/licenses/notify-rust-4.18.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "num-traits",
+      "version": "0.2.19",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-num/num-traits",
+      "texts": "docs/licenses/num-traits-0.2.19",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "num_enum",
+      "version": "0.7.6",
+      "declared": "BSD-3-Clause OR MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/illicitonion/num_enum",
+      "texts": "docs/licenses/num_enum-0.7.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "num_enum_derive",
+      "version": "0.7.6",
+      "declared": "BSD-3-Clause OR MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/illicitonion/num_enum",
+      "texts": "docs/licenses/num_enum_derive-0.7.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "once_cell",
+      "version": "1.21.4",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/matklad/once_cell",
+      "texts": "docs/licenses/once_cell-1.21.4",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "parlance",
+      "version": "0.1.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/parley",
+      "texts": "docs/licenses/parlance-0.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "parley",
+      "version": "0.11.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/parley",
+      "texts": "docs/licenses/parley-0.11.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "parley_data",
+      "version": "0.11.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/parley",
+      "texts": "docs/licenses/parley_data-0.11.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "percent-encoding",
+      "version": "2.3.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/servo/rust-url/",
+      "texts": "docs/licenses/percent-encoding-2.3.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "pico-args",
+      "version": "0.5.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/RazrFalcon/pico-args",
+      "texts": "docs/licenses/pico-args-0.5.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "pin-project",
+      "version": "1.1.13",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/taiki-e/pin-project",
+      "texts": "docs/licenses/pin-project-1.1.13",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "pin-project-internal",
+      "version": "1.1.13",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/taiki-e/pin-project",
+      "texts": "docs/licenses/pin-project-internal-1.1.13",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "pin-project-lite",
+      "version": "0.2.17",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/taiki-e/pin-project-lite",
+      "texts": "docs/licenses/pin-project-lite-0.2.17",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "pin-utils",
+      "version": "0.1.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/pin-utils",
+      "texts": "docs/licenses/pin-utils-0.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "pin-weak",
+      "version": "1.1.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/sixtyfpsui/pin-weak",
+      "texts": "docs/licenses/pin-weak-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "png",
+      "version": "0.18.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/image-rs/image-png",
+      "texts": "docs/licenses/png-0.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "polycool",
+      "version": "0.4.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/kurbo",
+      "texts": "docs/licenses/polycool-0.4.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "portable-atomic",
+      "version": "1.15.0",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/taiki-e/portable-atomic",
+      "texts": "docs/licenses/portable-atomic-1.15.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "potential_utf",
+      "version": "0.1.6",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/potential_utf-0.1.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "proc-macro-crate",
+      "version": "3.5.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/bkchr/proc-macro-crate",
+      "texts": "docs/licenses/proc-macro-crate-3.5.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "proc-macro2",
+      "version": "1.0.107",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/proc-macro2",
+      "texts": "docs/licenses/proc-macro2-1.0.107",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "pulldown-cmark",
+      "version": "0.13.6",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/raphlinus/pulldown-cmark",
+      "texts": "docs/licenses/pulldown-cmark-0.13.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "pxfm",
+      "version": "0.1.30",
+      "declared": "BSD-3-Clause OR Apache-2.0",
+      "selected": "Apache-2.0",
+      "repository": "https://github.com/awxkee/pxfm",
+      "texts": "docs/licenses/pxfm-0.1.30",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "quick-error",
+      "version": "2.0.1",
+      "declared": "MIT/Apache-2.0",
+      "selected": "MIT",
+      "repository": "http://github.com/tailhook/quick-error",
+      "texts": "docs/licenses/quick-error-2.0.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "quote",
+      "version": "1.0.47",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/quote",
+      "texts": "docs/licenses/quote-1.0.47",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "raw-window-handle",
+      "version": "0.6.2",
+      "declared": "MIT OR Apache-2.0 OR Zlib",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-windowing/raw-window-handle",
+      "texts": "docs/licenses/raw-window-handle-0.6.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "rayon",
+      "version": "1.12.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rayon-rs/rayon",
+      "texts": "docs/licenses/rayon-1.12.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "rayon-core",
+      "version": "1.13.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rayon-rs/rayon",
+      "texts": "docs/licenses/rayon-core-1.13.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "read-fonts",
+      "version": "0.41.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/googlefonts/fontations",
+      "texts": "docs/licenses/read-fonts-0.41.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "resvg",
+      "version": "0.48.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/resvg",
+      "texts": "docs/licenses/resvg-0.48.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "rgb",
+      "version": "0.8.53",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/kornelski/rust-rgb",
+      "texts": "docs/licenses/rgb-0.8.53",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "rowan",
+      "version": "0.17.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-analyzer/rowan",
+      "texts": "docs/licenses/rowan-0.17.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "roxmltree",
+      "version": "0.21.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/RazrFalcon/roxmltree",
+      "texts": "docs/licenses/roxmltree-0.21.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "rspolib",
+      "version": "0.1.2",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/mondeja/rspolib",
+      "texts": "docs/licenses/rspolib-0.1.2",
+      "provenance": "Pinned upstream 8170d99ebad29d894712ccb3dc6d0be2198d3055; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "rustc-hash",
+      "version": "1.1.0",
+      "declared": "Apache-2.0/MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang-nursery/rustc-hash",
+      "texts": "docs/licenses/rustc-hash-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "rustc_version",
+      "version": "0.4.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/djc/rustc-version-rs",
+      "texts": "docs/licenses/rustc_version-0.4.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "rustversion",
+      "version": "1.0.23",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/rustversion",
+      "texts": "docs/licenses/rustversion-1.0.23",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "scoped-tls-hkt",
+      "version": "0.1.5",
+      "declared": "MIT/Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/Diggsey/scoped-tls-hkt",
+      "texts": "docs/licenses/scoped-tls-hkt-0.1.5",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "scopeguard",
+      "version": "1.2.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/bluss/scopeguard",
+      "texts": "docs/licenses/scopeguard-1.2.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "semver",
+      "version": "1.0.28",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/semver",
+      "texts": "docs/licenses/semver-1.0.28",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "serde",
+      "version": "1.0.229",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/serde-rs/serde",
+      "texts": "docs/licenses/serde-1.0.229",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "serde_core",
+      "version": "1.0.229",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/serde-rs/serde",
+      "texts": "docs/licenses/serde_core-1.0.229",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "serde_derive",
+      "version": "1.0.229",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/serde-rs/serde",
+      "texts": "docs/licenses/serde_derive-1.0.229",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "serde_json",
+      "version": "1.0.154",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/serde-rs/json",
+      "texts": "docs/licenses/serde_json-1.0.154",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "serde_spanned",
+      "version": "1.1.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/toml-rs/toml",
+      "texts": "docs/licenses/serde_spanned-1.1.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "simd-adler32",
+      "version": "0.3.10",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/mcountryman/simd-adler32",
+      "texts": "docs/licenses/simd-adler32-0.3.10",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "simplecss",
+      "version": "0.2.2",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/simplecss",
+      "texts": "docs/licenses/simplecss-0.2.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "siphasher",
+      "version": "1.0.4",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/jedisct1/rust-siphash",
+      "texts": "docs/licenses/siphasher-1.0.4",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "skrifa",
+      "version": "0.44.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/googlefonts/fontations",
+      "texts": "docs/licenses/skrifa-0.44.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "slab",
+      "version": "0.4.12",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/tokio-rs/slab",
+      "texts": "docs/licenses/slab-0.4.12",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "slint",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/slint-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "slint-build",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/slint-build-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "slint-macros",
+      "version": "1.18.1",
+      "declared": "GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0",
+      "selected": "GPL-3.0-only",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/slint-macros-1.18.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "slotmap",
+      "version": "1.1.1",
+      "declared": "Zlib",
+      "selected": "Zlib",
+      "repository": "https://github.com/orlp/slotmap",
+      "texts": "docs/licenses/slotmap-1.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "smallvec",
+      "version": "1.16.4",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/servo/rust-smallvec",
+      "texts": "docs/licenses/smallvec-1.16.4",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "smol_str",
+      "version": "0.2.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-analyzer/smol_str",
+      "texts": "docs/licenses/smol_str-0.2.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "smol_str",
+      "version": "0.3.7",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-lang/rust-analyzer/tree/master/lib/smol_str",
+      "texts": "docs/licenses/smol_str-0.3.7",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "snafu",
+      "version": "0.8.9",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/shepmaster/snafu",
+      "texts": "docs/licenses/snafu-0.8.9",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "snafu-derive",
+      "version": "0.8.9",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/shepmaster/snafu",
+      "texts": "docs/licenses/snafu-derive-0.8.9",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "softbuffer",
+      "version": "0.4.8",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-windowing/softbuffer",
+      "texts": "docs/licenses/softbuffer-0.4.8",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "spin_on",
+      "version": "0.1.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": null,
+      "texts": "docs/licenses/spin_on-0.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "stable_deref_trait",
+      "version": "1.2.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/storyyeller/stable_deref_trait",
+      "texts": "docs/licenses/stable_deref_trait-1.2.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "static_assertions",
+      "version": "1.1.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/nvzqz/static-assertions-rs",
+      "texts": "docs/licenses/static_assertions-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "strict-num",
+      "version": "0.1.1",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/RazrFalcon/strict-num",
+      "texts": "docs/licenses/strict-num-0.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "strum",
+      "version": "0.28.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/Peternator7/strum",
+      "texts": "docs/licenses/strum-0.28.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "strum_macros",
+      "version": "0.28.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/Peternator7/strum",
+      "texts": "docs/licenses/strum_macros-0.28.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "svgtypes",
+      "version": "0.16.2",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/svgtypes",
+      "texts": "docs/licenses/svgtypes-0.16.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "swash",
+      "version": "0.2.10",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/dfrg/swash",
+      "texts": "docs/licenses/swash-0.2.10",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "syn",
+      "version": "2.0.119",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/syn",
+      "texts": "docs/licenses/syn-2.0.119",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "syn",
+      "version": "3.0.9",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/syn",
+      "texts": "docs/licenses/syn-3.0.9",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "synstructure",
+      "version": "0.14.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/mystor/synstructure",
+      "texts": "docs/licenses/synstructure-0.14.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "sys-locale",
+      "version": "0.3.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/1Password/sys-locale",
+      "texts": "docs/licenses/sys-locale-0.3.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "taffy",
+      "version": "0.10.1",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/DioxusLabs/taffy",
+      "texts": "docs/licenses/taffy-0.10.1",
+      "provenance": "Pinned upstream 639f0acdd20f914f847abffbeaa903d66cae4882; see UPSTREAM-SOURCE.json."
+    },
+    {
+      "name": "tauri-winrt-notification",
+      "version": "0.8.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/tauri-apps/winrt-notification",
+      "texts": "docs/licenses/tauri-winrt-notification-0.8.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "text-size",
+      "version": "1.1.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/rust-analyzer/text-size",
+      "texts": "docs/licenses/text-size-1.1.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "thiserror",
+      "version": "2.0.21",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/thiserror",
+      "texts": "docs/licenses/thiserror-2.0.21",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "thiserror-impl",
+      "version": "2.0.21",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/thiserror",
+      "texts": "docs/licenses/thiserror-impl-2.0.21",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "tiny-skia",
+      "version": "0.12.0",
+      "declared": "BSD-3-Clause",
+      "selected": "BSD-3-Clause",
+      "repository": "https://github.com/linebender/tiny-skia",
+      "texts": "docs/licenses/tiny-skia-0.12.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "tiny-skia-path",
+      "version": "0.12.0",
+      "declared": "BSD-3-Clause",
+      "selected": "BSD-3-Clause",
+      "repository": "https://github.com/linebender/tiny-skia/tree/master/path",
+      "texts": "docs/licenses/tiny-skia-path-0.12.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "tinystr",
+      "version": "0.8.5",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/tinystr-0.8.5",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "tinyvec",
+      "version": "1.13.3",
+      "declared": "Zlib OR Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/Lokathor/tinyvec",
+      "texts": "docs/licenses/tinyvec-1.13.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "toml",
+      "version": "1.2.0+spec-1.1.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/toml-rs/toml",
+      "texts": "docs/licenses/toml-1.2.0+spec-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "toml_datetime",
+      "version": "1.1.2+spec-1.1.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/toml-rs/toml",
+      "texts": "docs/licenses/toml_datetime-1.1.2+spec-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "toml_edit",
+      "version": "0.25.18+spec-1.1.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/toml-rs/toml",
+      "texts": "docs/licenses/toml_edit-0.25.18+spec-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "toml_parser",
+      "version": "1.1.5+spec-1.1.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/toml-rs/toml",
+      "texts": "docs/licenses/toml_parser-1.1.5+spec-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "toml_writer",
+      "version": "1.2.0+spec-1.1.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/toml-rs/toml",
+      "texts": "docs/licenses/toml_writer-1.2.0+spec-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "tracing",
+      "version": "0.1.44",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/tokio-rs/tracing",
+      "texts": "docs/licenses/tracing-0.1.44",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "tracing-core",
+      "version": "0.1.36",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/tokio-rs/tracing",
+      "texts": "docs/licenses/tracing-core-0.1.36",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "typed-index-collections",
+      "version": "3.5.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/zheland/typed-index-collections",
+      "texts": "docs/licenses/typed-index-collections-3.5.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicase",
+      "version": "2.10.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/seanmonstar/unicase",
+      "texts": "docs/licenses/unicase-2.10.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicode-bidi",
+      "version": "0.3.18",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/servo/unicode-bidi",
+      "texts": "docs/licenses/unicode-bidi-0.3.18",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicode-ident",
+      "version": "1.0.27",
+      "declared": "(MIT OR Apache-2.0) AND Unicode-3.0",
+      "selected": "MIT AND Unicode-3.0",
+      "repository": "https://github.com/dtolnay/unicode-ident",
+      "texts": "docs/licenses/unicode-ident-1.0.27",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicode-linebreak",
+      "version": "0.1.5",
+      "declared": "Apache-2.0",
+      "selected": "Apache-2.0",
+      "repository": "https://github.com/axelf4/unicode-linebreak",
+      "texts": "docs/licenses/unicode-linebreak-0.1.5",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicode-script",
+      "version": "0.5.9",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/unicode-rs/unicode-script",
+      "texts": "docs/licenses/unicode-script-0.5.9",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicode-segmentation",
+      "version": "1.13.3",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/unicode-rs/unicode-segmentation",
+      "texts": "docs/licenses/unicode-segmentation-1.13.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicode-vo",
+      "version": "0.1.0",
+      "declared": "MIT/Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/RazrFalcon/unicode-vo",
+      "texts": "docs/licenses/unicode-vo-0.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicode-width",
+      "version": "0.2.3",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/unicode-rs/unicode-width",
+      "texts": "docs/licenses/unicode-width-0.2.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "unicode-xid",
+      "version": "0.2.6",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/unicode-rs/unicode-xid",
+      "texts": "docs/licenses/unicode-xid-0.2.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "url",
+      "version": "2.5.8",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/servo/rust-url",
+      "texts": "docs/licenses/url-2.5.8",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "usvg",
+      "version": "0.48.1",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/linebender/resvg",
+      "texts": "docs/licenses/usvg-0.48.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "utf8_iter",
+      "version": "1.1.0",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/hsivonen/utf8_iter",
+      "texts": "docs/licenses/utf8_iter-1.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "utf_types",
+      "version": "1.0.0",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/hsivonen/utf_types",
+      "texts": "docs/licenses/utf_types-1.0.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "uuid",
+      "version": "1.29.0",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/uuid-rs/uuid",
+      "texts": "docs/licenses/uuid-1.29.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "version_check",
+      "version": "0.9.5",
+      "declared": "MIT/Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/SergioBenitez/version_check",
+      "texts": "docs/licenses/version_check-0.9.5",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "vtable",
+      "version": "0.5.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/vtable-0.5.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "vtable-macro",
+      "version": "0.5.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/slint-ui/slint",
+      "texts": "docs/licenses/vtable-macro-0.5.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "webbrowser",
+      "version": "1.2.6",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/amodm/webbrowser-rs",
+      "texts": "docs/licenses/webbrowser-1.2.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "weezl",
+      "version": "0.1.12",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/image-rs/weezl",
+      "texts": "docs/licenses/weezl-0.1.12",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows",
+      "version": "0.62.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-0.62.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-collections",
+      "version": "0.3.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-collections-0.3.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-core",
+      "version": "0.62.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-core-0.62.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-future",
+      "version": "0.3.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-future-0.3.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-implement",
+      "version": "0.60.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-implement-0.60.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-interface",
+      "version": "0.59.3",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-interface-0.59.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-link",
+      "version": "0.2.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-link-0.2.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-numerics",
+      "version": "0.3.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-numerics-0.3.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-result",
+      "version": "0.4.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-result-0.4.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-strings",
+      "version": "0.5.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-strings-0.5.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-sys",
+      "version": "0.52.0",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-sys-0.52.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-sys",
+      "version": "0.61.2",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-sys-0.61.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-targets",
+      "version": "0.52.6",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-targets-0.52.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-threading",
+      "version": "0.2.1",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-threading-0.2.1",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows-version",
+      "version": "0.1.7",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows-version-0.1.7",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "windows_x86_64_msvc",
+      "version": "0.52.6",
+      "declared": "MIT OR Apache-2.0",
+      "selected": "MIT",
+      "repository": "https://github.com/microsoft/windows-rs",
+      "texts": "docs/licenses/windows_x86_64_msvc-0.52.6",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "winit",
+      "version": "0.30.13",
+      "declared": "Apache-2.0",
+      "selected": "Apache-2.0",
+      "repository": "https://github.com/rust-windowing/winit",
+      "texts": "docs/licenses/winit-0.30.13",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "winnow",
+      "version": "1.0.5",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/winnow-rs/winnow",
+      "texts": "docs/licenses/winnow-1.0.5",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "winresource",
+      "version": "0.1.34",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/BenjaminRi/winresource",
+      "texts": "docs/licenses/winresource-0.1.34",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "writeable",
+      "version": "0.6.4",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/writeable-0.6.4",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "xmlwriter",
+      "version": "0.1.0",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/RazrFalcon/xmlwriter",
+      "texts": "docs/licenses/xmlwriter-0.1.0",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "yazi",
+      "version": "0.2.2",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/dfrg/yazi",
+      "texts": "docs/licenses/yazi-0.2.2",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "yoke",
+      "version": "0.8.4",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/yoke-0.8.4",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "yoke-derive",
+      "version": "0.8.4",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/yoke-derive-0.8.4",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zeno",
+      "version": "0.3.3",
+      "declared": "Apache-2.0 OR MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/dfrg/zeno",
+      "texts": "docs/licenses/zeno-0.3.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zerofrom",
+      "version": "0.1.8",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/zerofrom-0.1.8",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zerofrom-derive",
+      "version": "0.1.8",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/zerofrom-derive-0.1.8",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zerotrie",
+      "version": "0.2.5",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/zerotrie-0.2.5",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zerovec",
+      "version": "0.11.9",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/zerovec-0.11.9",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zerovec-derive",
+      "version": "0.11.7",
+      "declared": "Unicode-3.0",
+      "selected": "Unicode-3.0",
+      "repository": "https://github.com/unicode-org/icu4x",
+      "texts": "docs/licenses/zerovec-derive-0.11.7",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zmij",
+      "version": "1.0.23",
+      "declared": "MIT",
+      "selected": "MIT",
+      "repository": "https://github.com/dtolnay/zmij",
+      "texts": "docs/licenses/zmij-1.0.23",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zune-core",
+      "version": "0.5.3",
+      "declared": "MIT OR Apache-2.0 OR Zlib",
+      "selected": "MIT",
+      "repository": "https://github.com/etemesi254/zune-image",
+      "texts": "docs/licenses/zune-core-0.5.3",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    },
+    {
+      "name": "zune-jpeg",
+      "version": "0.5.15",
+      "declared": "MIT OR Apache-2.0 OR Zlib",
+      "selected": "MIT",
+      "repository": "https://github.com/etemesi254/zune-image/tree/dev/crates/zune-jpeg",
+      "texts": "docs/licenses/zune-jpeg-0.5.15",
+      "provenance": "Published Cargo crate (unmodified); original notices retained."
+    }
+  ]
+}

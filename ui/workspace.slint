@@ -1,0 +1,667 @@
+// Copyright (C) 2026 Yu Prananda
+// SPDX-License-Identifier: GPL-3.0-only
+
+import { I18n } from "i18n.slint";
+import { Palette } from "tokens.slint";
+import { ActionButton } from "action-button.slint";
+import { Brand, IconButton } from "components.slint";
+import { ScrollView, AboutSlint, ComboBox } from "std-widgets.slint";
+
+export struct HistoryRow { id: string, title: string, duration: string, detail: string, note: string, session-name: string, task-summary: string }
+export struct DayBar { label: string, value: float, duration: string }
+export struct TaskRow { id: string, title: string, completed: bool, selected: bool }
+
+export global WorkspaceView {
+    in-out property <string> app-version;
+    in-out property <[TaskRow]> tasks;
+    in-out property <string> task-draft;
+    callback add-task(string);
+    callback toggle-task(string);
+    callback select-task(string);
+    callback delete-task(string);
+    callback new-session;
+    in-out property <int> page: 0;
+    in-out property <int> preferences-tab: 0;
+    callback theme;
+    in-out property <string> notice;
+    in-out property <string> io-status;
+    in-out property <bool> busy: false;
+    in-out property <bool> unsaved: false;
+    in-out property <int> generation: 0;
+    in-out property <[HistoryRow]> history;
+    in-out property <[DayBar]> days;
+    in-out property <string> history-page;
+    in-out property <bool> previous-page: false;
+    in-out property <bool> next-page: false;
+    in-out property <string> today-total: "0 detik";
+    in-out property <string> week-total: "0 detik";
+    in-out property <string> summary-detail;
+    in-out property <string> data-path;
+    in-out property <string> deep-minutes: "25";
+    in-out property <string> interval-minutes: "25";
+    in-out property <string> break-minutes: "5";
+    in-out property <string> cycles: "4";
+    in-out property <bool> notifications: true;
+    in-out property <bool> alarm-enabled: true;
+    in-out property <int> alarm-sound: 0;
+    in-out property <bool> alarm-pending: false;
+    in-out property <string> alarm-status;
+    callback test-alarm;
+    in-out property <bool> topmost: true;
+    in-out property <bool> framed: false;
+    in-out property <float> floating-opacity: 100;
+    in-out property <bool> opacity-supported: false;
+    callback opacity(float);
+    in-out property <bool> scene: true;
+    in-out property <string> export-directory;
+    in-out property <string> display-name;
+    in-out property <string> card-id;
+    in-out property <string> saved-session;
+    in-out property <[string]> card-options;
+    in-out property <int> card-index: -1;
+    in-out property <bool> include-tasks: false;
+    in-out property <string> card-tasks;
+    callback select-card(int);
+    callback share-session(string);
+    in-out property <bool> include-name: false;
+    in-out property <string> card-name;
+    in-out property <string> card-caption;
+    in-out property <int> card-template: 0;
+    in-out property <int> card-format: 0;
+    in-out property <string> card-time: "0m";
+    in-out property <string> card-duration: "0 detik";
+    in-out property <string> card-detail;
+    in-out property <string> card-period;
+    in-out property <bool> card-ready: false;
+    in-out property <int> dialog: 0;
+    in-out property <string> dialog-title;
+    in-out property <string> dialog-detail;
+    in-out property <string> edit-id;
+    in-out property <string> edit-note;
+    in-out property <string> edit-session-name;
+    in-out property <[TaskRow]> edit-tasks;
+    in-out property <string> edit-seconds;
+    in-out property <string> edit-start;
+    in-out property <string> edit-end;
+    in-out property <bool> edit-completed: true;
+    in-out property <int> edit-mode: 0;
+    callback navigate(int);
+    callback page-history(int);
+    callback edit(string);
+    callback delete(string);
+    callback clear-history;
+    callback save-edit;
+    callback save-settings;
+    callback language(bool);
+    callback refresh-card;
+    callback export-card;
+    callback retry-save;
+    callback open-data;
+    callback open-exports;
+    in-out property <bool> notification-pending: false;
+    in-out property <string> notification-status;
+    callback test-notification;
+    callback dialog-save;
+    callback dialog-discard;
+    callback dialog-cancel;
+}
+
+export component TextField inherits Rectangle {
+    in-out property <string> text;
+    in property <string> label;
+    in property <string> placeholder;
+    in property <bool> enabled: true;
+    callback accepted;
+    in property <bool> multiline: false;
+    min-width: 0px; min-height: 38px; border-radius: 8px; clip: true;
+    background: Palette.button;
+    border-width: 1px; border-color: input.has-focus ? Palette.accent : Palette.line;
+    forward-focus: input;
+    input := TextInput {
+        x: 10px; y: 0px; width: parent.width - 20px; height: parent.height;
+        text <=> root.text; color: Palette.ink; font-size: 12px;
+        single-line: !root.multiline;
+        enabled: root.enabled;
+        vertical-alignment: center; accessible-label: I18n.tr(root.label);
+        accepted => { root.accepted(); }
+        edited => { root.edited(); }
+    }
+    callback edited;
+    if root.text == "" && root.placeholder != "" : Text { x: 10px; width: parent.width - 20px; height: parent.height; overflow: elide; text: root.placeholder; color: Palette.muted; font-size: 11px; vertical-alignment: center; }
+}
+
+component TaskTitle inherits Rectangle {
+    in property <string> title;
+    in property <bool> selected;
+    in property <bool> completed;
+    callback clicked;
+    forward-focus: focus;
+    min-width: 0px; min-height: 36px; clip: true;
+    border-radius: 6px;
+    background: root.selected ? Palette.selected : touch.has-hover ? Palette.hover : transparent;
+    border-width: focus.has-focus ? 1px : 0px;
+    border-color: Palette.accent;
+    accessible-role: button;
+    accessible-label: root.title;
+    Text { x: 6px; width: parent.width - 12px; height: parent.height; text: root.title; color: root.completed ? Palette.muted : Palette.ink; font-size: 12px; font-weight: root.selected ? 600 : 400; vertical-alignment: center; min-width: 0px; wrap: word-wrap; max-lines: 2; overflow: elide; }
+    focus := FocusScope { key-pressed(event) => { if event.text == Key.Space || event.text == Key.Return { root.clicked(); return accept; } return reject; } }
+    touch := TouchArea { clicked => { focus.focus(); root.clicked(); } }
+}
+
+export component SessionTasks inherits Rectangle {
+    VerticalLayout {
+        spacing: 10px;
+        Rectangle { height: 1px; background: Palette.line; }
+        Text { text: I18n.tr("Tugas sesi"); color: Palette.ink; font-size: 13px; font-weight: 600; }
+        HorizontalLayout {
+            spacing: 6px; height: 38px;
+            TextField { text <=> WorkspaceView.task-draft; min-width: 0px; placeholder: I18n.tr("Tugas baru…"); label: I18n.tr("Tugas baru, maksimal 120 karakter"); accepted => { WorkspaceView.add-task(WorkspaceView.task-draft); } }
+            ActionButton { text: I18n.tr("Tambah"); min-width: 64px; max-width: 64px; horizontal-padding: 4px; text-size: 11px; enabled: WorkspaceView.tasks.length < 32; clicked => { WorkspaceView.add-task(WorkspaceView.task-draft); } }
+        }
+        if WorkspaceView.tasks.length == 0 : Text { text: I18n.tr("Satu hal kecil untuk sesi ini. Tambahkan tugas saat kamu siap."); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+        ScrollView {
+            horizontal-scrollbar-policy: always-off;
+            content-width: self.visible-width;
+            vertical-stretch: 1;
+            VerticalLayout { padding-right: 20px;
+                spacing: 5px;
+                for task in WorkspaceView.tasks : HorizontalLayout {
+                    spacing: 4px; height: 40px;
+                    Rectangle { min-width: 24px; max-width: 24px;
+                        IconButton { x: 0px; y: (parent.height - self.height) / 2; width: 24px; height: 24px; compact: true; tiny: true; border-color: Palette.line; icon: task.completed ? "check" : "empty"; label: I18n.tr("Tandai tugas selesai atau belum selesai"); clicked => { WorkspaceView.toggle-task(task.id); } }
+                    }
+                    TaskTitle { title: task.title; selected: task.selected; completed: task.completed; clicked => { WorkspaceView.select-task(task.id); } }
+                    Rectangle { min-width: 24px; max-width: 24px;
+                        IconButton { x: 0px; y: (parent.height - self.height) / 2; width: 24px; height: 24px; compact: true; tiny: true; icon: "close"; label: I18n.tr("Hapus tugas"); clicked => { WorkspaceView.delete-task(task.id); } }
+                    }
+                }
+            }
+        }
+    }
+}
+
+export component MiniSessionTasks inherits Rectangle {
+    in property <string> session-name;
+    VerticalLayout { spacing: 6px;
+        Rectangle { height: 1px; background: Palette.line; }
+        Text { text: root.session-name != "" ? root.session-name : I18n.tr("Sesi tanpa nama"); color: Palette.ink; font-size: 12px; font-weight: 600; overflow: elide; }
+        if WorkspaceView.tasks.length == 0 : Text { text: I18n.tr("Belum ada tugas untuk sesi ini."); color: Palette.muted; font-size: 10px; min-width: 0px; wrap: word-wrap; }
+        ScrollView { horizontal-scrollbar-policy: always-off; content-width: self.visible-width;
+            VerticalLayout { padding-right: 18px; spacing: 2px;
+                for task in WorkspaceView.tasks : HorizontalLayout { height: 36px; spacing: 4px;
+                    Rectangle { min-width: 24px; max-width: 24px;
+                        IconButton { x: 0px; y: (parent.height - self.height) / 2; width: 24px; height: 24px; compact: true; tiny: true; border-color: Palette.line; icon: task.completed ? "check" : "empty"; label: I18n.tr("Tandai tugas selesai atau belum selesai"); clicked => { WorkspaceView.toggle-task(task.id); } }
+                    }
+                    TaskTitle { title: task.title; selected: task.selected; completed: task.completed; clicked => { WorkspaceView.select-task(task.id); } }
+                }
+            }
+        }
+    }
+}
+
+component OpacitySlider inherits Rectangle {
+    in-out property <float> value: 100;
+    in property <bool> enabled: true;
+    callback released(float);
+    min-height: 32px;
+    forward-focus: focus;
+    opacity: root.enabled ? 1 : 0.4;
+    accessible-role: slider;
+    accessible-label: I18n.tr("Opacity timer mini");
+    accessible-enabled: root.enabled;
+    accessible-value: root.value;
+    accessible-value-minimum: 50;
+    accessible-value-maximum: 100;
+    accessible-value-step: 5;
+    accessible-action-increment => { root.commit(root.value + 5); }
+    accessible-action-decrement => { root.commit(root.value - 5); }
+    accessible-action-set-value(value) => { if value.is-float() { root.commit(value.to-float()); } }
+    function commit(value: float) { if root.enabled { root.value = max(50, min(100, Math.round(value / 5) * 5)); root.released(root.value); } }
+    function position(value: length) { root.value = max(50, min(100, Math.round((50 + (value - 8px) / max(1px, root.width - 16px) * 50) / 5) * 5)); }
+    Rectangle { x: 8px; y: (parent.height - 3px) / 2; width: parent.width - 16px; height: 3px; border-radius: 1.5px; background: Palette.line;
+        Rectangle { x: 0px; y: 0px; width: parent.width * (root.value - 50) / 50; height: parent.height; background: Palette.accent; border-radius: 1.5px; }
+    }
+    Rectangle { x: 1px + (parent.width - 16px) * (root.value - 50) / 50; y: (parent.height - self.height) / 2; width: 14px; height: 14px; border-radius: 7px; background: Palette.accent; border-width: focus.has-focus ? 2px : 0px; border-color: Palette.ink; }
+    focus := FocusScope { enabled: root.enabled; key-pressed(event) => {
+        if event.text == Key.LeftArrow || event.text == Key.DownArrow { root.commit(root.value - 5); return accept; }
+        if event.text == Key.RightArrow || event.text == Key.UpArrow { root.commit(root.value + 5); return accept; }
+        if event.text == Key.Home { root.commit(50); return accept; }
+        if event.text == Key.End { root.commit(100); return accept; }
+        return reject;
+    } }
+    touch := TouchArea { enabled: root.enabled;
+        pointer-event(event) => {
+            if event.button == PointerEventButton.left {
+                if event.kind == PointerEventKind.down { focus.focus(); root.position(self.mouse-x); }
+                if event.kind == PointerEventKind.up { root.released(root.value); }
+            }
+        }
+        moved => { if self.pressed { root.position(self.mouse-x); } }
+    }
+}
+
+export component ToggleOption inherits Rectangle {
+    in-out property <bool> checked;
+    in property <string> text;
+    min-width: 0px; min-height: max(34px, toggle-label.preferred-height + 12px); forward-focus: focus;
+    accessible-role: checkbox; accessible-label: I18n.tr(root.text); accessible-checked: root.checked;
+    accessible-action-default => { root.checked = !root.checked; }
+    Rectangle {
+        x: 0px; y: (parent.height - 20px) / 2; width: 20px; height: 20px;
+        border-radius: 5px; border-width: focus.has-focus ? 2px : 1px;
+        border-color: Palette.accent; background: root.checked ? Palette.selected : transparent;
+        Text { text: I18n.tr(root.checked ? "✓" : ""); color: Palette.ink; font-size: 13px; horizontal-alignment: center; vertical-alignment: center; }
+    }
+    toggle-label := Text { x: 30px; y: 0px; width: max(0px, parent.width - 30px); height: parent.height; min-width: 0px; wrap: word-wrap; text: I18n.tr(root.text); color: Palette.ink; font-size: 12px; vertical-alignment: center; }
+    focus := FocusScope {
+        key-pressed(e) => { if e.text == Key.Space { root.checked = !root.checked; return accept; } return reject; }
+    }
+    TouchArea { clicked => { focus.focus(); root.checked = !root.checked; } }
+}
+
+export component AchievementCard inherits Rectangle {
+    in property <bool> purple: false;
+    in property <string> duration;
+    in property <string> detail;
+    in property <string> period;
+    in property <string> personal-name;
+    in property <string> caption;
+    in property <string> tasks;
+    private property <float> scale: self.width / 1080px;
+    private property <bool> story: self.height > self.width * 1.5;
+    private property <color> ink: root.purple ? #f5f5f5 : #181818;
+    private property <color> muted: root.purple ? #bcbcbc : #555555;
+    private property <length> inset: 72px * root.scale;
+    private property <length> details-y: (root.story ? 880px : 650px) * root.scale;
+    private property <length> tasks-y: (root.story ? (root.personal-name != "" ? 1110px : 1040px) : (root.personal-name != "" ? 840px : 780px)) * root.scale;
+    background: root.purple ? #181818 : #fafafa;
+    // Existing brand masks, preserved proportions. Layout adapts to share format.
+    Image { x: root.inset; y: 70px * root.scale; width: 62px * root.scale; height: 66px * root.scale; source: @image-url("../assets/brand/exports/mascot-concept-mask.png"); image-fit: contain; colorize: root.ink; }
+    Image { x: 147px * root.scale; y: 70px * root.scale; width: 170px * root.scale; height: 66px * root.scale; source: @image-url("../assets/brand/exports/wordmark-concept-mask.png"); image-fit: contain; colorize: root.ink; }
+    Text { x: root.inset; y: (root.story ? 240px : 192px) * root.scale; width: parent.width - 2 * root.inset; text: I18n.tr("WAKTU FOKUS TERCATAT"); color: root.muted; font-size: (root.story ? 30px : 28px) * root.scale; font-weight: 600; overflow: elide; }
+    Text {
+        x: 64px * root.scale; y: (root.story ? 300px : 246px) * root.scale;
+        width: parent.width - 136px * root.scale; height: (root.story ? 220px : 172px) * root.scale;
+        text: root.duration; color: root.ink;
+        font-size: (root.story ? 176px : 152px) * root.scale;
+        font-weight: 700; overflow: elide;
+    }
+    Rectangle {
+        x: root.inset; y: (root.story ? 560px : 438px) * root.scale;
+        width: parent.width - 2 * root.inset; height: (root.story ? 244px : 160px) * root.scale;
+        background: transparent; clip: true;
+        Text {
+            width: parent.width; height: parent.height;
+            text: root.caption != "" ? root.caption : I18n.tr("Sesi tanpa nama"); color: root.ink;
+            font-size: (root.story ? 72px : 60px) * root.scale; font-weight: 600;
+            vertical-alignment: top; wrap: word-wrap; max-lines: root.story ? 3 : 2; overflow: elide;
+        }
+    }
+
+    Rectangle { x: root.inset; y: root.details-y - 38px * root.scale; width: parent.width - 2 * root.inset; height: 2px * root.scale; background: root.purple ? #ffffff30 : #00000024; }
+    Text { x: root.inset; y: root.details-y; width: parent.width - 2 * root.inset; height: 48px * root.scale; text: root.period; color: root.muted; font-size: 36px * root.scale; }
+    Text { x: root.inset; y: root.details-y + 62px * root.scale; width: parent.width - 2 * root.inset; height: 46px * root.scale; text: I18n.tr(root.detail); color: root.muted; font-size: 34px * root.scale; overflow: elide; }
+    if root.personal-name != "" : Text { x: root.inset; y: root.details-y + 124px * root.scale; width: parent.width - 2 * root.inset; height: 48px * root.scale; text: root.personal-name; color: root.ink; font-size: 38px * root.scale; overflow: elide; }
+    if root.tasks != "" : Rectangle {
+        x: root.inset; y: root.tasks-y; width: parent.width - 2 * root.inset;
+        height: (root.story ? 480px : 290px) * root.scale;
+        border-radius: 24px * root.scale; background: root.purple ? #ffffff09 : #00000006;
+        Text { x: 32px * root.scale; y: 28px * root.scale; width: parent.width - 64px * root.scale; text: I18n.tr("TUGAS SELESAI"); color: root.muted; font-size: 27px * root.scale; font-weight: 600; }
+        Rectangle {
+            x: 32px * root.scale; y: 88px * root.scale;
+            width: parent.width - 64px * root.scale; height: parent.height - 116px * root.scale;
+            background: transparent; clip: true;
+            task-copy := Text {
+                x: 0px; y: 0px; width: parent.width; height: self.preferred-height;
+                text: root.tasks; color: root.ink; font-size: (root.story ? 44px : 38px) * root.scale;
+                vertical-alignment: top; wrap: word-wrap;
+            }
+            if task-copy.height > parent.height : Rectangle {
+                x: 0px; y: parent.height - 48px * root.scale; width: parent.width; height: 48px * root.scale;
+                background: root.purple ? #202020 : #f4f4f4;
+                Text { text: "..."; color: root.muted; font-size: 38px * root.scale; vertical-alignment: center; }
+            }
+        }
+    }
+    if root.tasks == "" : Image {
+        x: (parent.width - self.width) / 2; y: root.tasks-y + 20px * root.scale;
+        width: (root.story ? 390px : 240px) * root.scale; height: self.width * 335 / 315;
+        source: @image-url("../assets/brand/exports/mascot-concept-mask.png"); image-fit: contain; colorize: root.ink;
+    }
+    if root.tasks != "" : Image { x: parent.width - (root.story ? 230px : 188px) * root.scale; y: parent.height - (root.story ? 250px : 196px) * root.scale; width: (root.story ? 158px : 116px) * root.scale; height: self.width * 335 / 315; source: @image-url("../assets/brand/exports/mascot-concept-mask.png"); image-fit: contain; colorize: root.ink; }
+    Text { x: root.inset; y: parent.height - 180px * root.scale; width: parent.width - 360px * root.scale; height: 100px * root.scale; text: "Make time for\nwhat matters."; color: root.muted; font-size: 36px * root.scale; }
+    Text { x: root.inset; y: parent.height - 57px * root.scale; text: "by Yu Prananda"; color: root.muted; font-size: 23px * root.scale; }
+
+}
+
+export component CardWindow inherits Window {
+    in property <string> duration;
+    in property <string> detail;
+    in property <string> period;
+    in property <string> personal-name;
+    in property <string> caption;
+    in property <string> tasks;
+    in property <bool> purple;
+    in property <int> format;
+    width: 1080px; height: root.format == 1 ? 1350px : 1920px;
+    default-font-family: "Plus Jakarta Sans";
+    AchievementCard { duration: root.duration; detail: root.detail; period: root.period; personal-name: root.personal-name; caption: root.caption; tasks: root.tasks; purple: root.purple; }
+}
+
+component CardsPage inherits Rectangle {
+    HorizontalLayout {
+        spacing: 22px;
+        Rectangle {
+            width: 300px; horizontal-stretch: 0; border-radius: 14px; clip: true;
+            background: Palette.surface; border-width: 1px; border-color: Palette.line;
+            VerticalLayout {
+                padding: 16px; spacing: 12px;
+                ScrollView {
+            horizontal-scrollbar-policy: always-off;
+            content-width: self.visible-width;
+                    VerticalLayout { padding-right: 20px; spacing: 12px;
+                        Text { text: I18n.tr("SESI TERSIMPAN"); color: Palette.muted; font-size: 10px; font-weight: 600; }
+                        ComboBox { model: WorkspaceView.card-options; current-index: WorkspaceView.card-index; enabled: WorkspaceView.card-options.length > 0; selected(value) => { WorkspaceView.select-card(self.current-index); } }
+                        Text { text: WorkspaceView.card-caption; color: Palette.ink; font-size: 14px; font-weight: 600; min-width: 0px; wrap: word-wrap; max-lines: 3; overflow: elide; }
+                        Text { text: I18n.tr(WorkspaceView.card-duration) + " | " + I18n.tr(WorkspaceView.card-detail); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                        ActionButton { text: I18n.tr("Pilih dari Riwayat"); text-size: 11px; clicked => { WorkspaceView.navigate(1); } }
+                        Text { text: I18n.tr("FORMAT"); color: Palette.muted; font-size: 10px; font-weight: 600; }
+                        HorizontalLayout { spacing: 6px;
+                            ActionButton { text: "Story · 9:16"; text-size: 11px; min-width: 0px; selected: WorkspaceView.card-format == 0; clicked => { WorkspaceView.card-format = 0; } }
+                            ActionButton { text: "Feed · 4:5"; text-size: 11px; min-width: 0px; selected: WorkspaceView.card-format == 1; clicked => { WorkspaceView.card-format = 1; } }
+                        }
+                        Text { text: WorkspaceView.card-format == 0 ? "1080 × 1920 px" : "1080 × 1350 px"; color: Palette.muted; font-size: 10px; }
+                        Text { text: I18n.tr("GAYA"); color: Palette.muted; font-size: 10px; font-weight: 600; }
+                        HorizontalLayout { spacing: 6px;
+                            ActionButton { text: I18n.tr("Kertas putih"); text-size: 11px; min-width: 0px; selected: WorkspaceView.card-template == 0; clicked => { WorkspaceView.card-template = 0; } }
+                            ActionButton { text: I18n.tr("Hitam arang"); text-size: 11px; min-width: 0px; selected: WorkspaceView.card-template == 1; clicked => { WorkspaceView.card-template = 1; } }
+                        }
+                        ToggleOption { checked <=> WorkspaceView.include-name; text: I18n.tr("Tampilkan nama"); }
+                        Text { text: WorkspaceView.card-name != "" ? WorkspaceView.card-name : I18n.tr("Atur nama tampilan di Preferences / General."); color: Palette.muted; font-size: 10px; min-width: 0px; wrap: word-wrap; }
+                        ToggleOption { checked <=> WorkspaceView.include-tasks; text: I18n.tr("Tampilkan tugas selesai"); }
+
+                    }
+                }
+                ActionButton { text: I18n.tr("Simpan PNG"); selected: true; enabled: WorkspaceView.card-ready && !WorkspaceView.busy && !WorkspaceView.unsaved; clicked => { WorkspaceView.export-card(); } }
+                ActionButton { text: I18n.tr("Buka folder ekspor"); text-size: 11px; clicked => { WorkspaceView.open-exports(); } }
+                Text { text: I18n.tr("Lokal dan offline. Tidak ada unggahan otomatis."); color: Palette.muted; font-size: 10px; min-width: 0px; wrap: word-wrap; }
+            }
+        }
+        Rectangle {
+            border-radius: 14px; background: Palette.button; border-width: 1px; border-color: Palette.line;
+            VerticalLayout { padding: 16px; spacing: 12px;
+                Text { text: I18n.tr("PRATINJAU"); color: Palette.muted; font-size: 10px; font-weight: 600; }
+                Rectangle {
+                    vertical-stretch: 1;
+                    private property <float> aspect: WorkspaceView.card-format == 0 ? 1080.0 / 1920.0 : 1080.0 / 1350.0;
+                    AchievementCard {
+                        width: min(parent.width, parent.height * parent.aspect); height: self.width / parent.aspect;
+                        x: (parent.width - self.width) / 2; y: (parent.height - self.height) / 2;
+                        purple: WorkspaceView.card-template == 1; duration: WorkspaceView.card-time;
+                        detail: WorkspaceView.card-detail; period: WorkspaceView.card-period;
+                        personal-name: WorkspaceView.include-name ? WorkspaceView.card-name : "";
+                        caption: WorkspaceView.card-caption;
+                        tasks: WorkspaceView.include-tasks ? WorkspaceView.card-tasks : "";
+                    }
+                }
+                if !WorkspaceView.card-ready : Text { text: I18n.tr("Pilih sesi tersimpan untuk membuat kartu."); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; horizontal-alignment: center; }
+                Text { text: I18n.tr("Durasi aktual satu sesi. Catatan pribadi tidak ikut diekspor."); color: Palette.muted; font-size: 10px; min-width: 0px; wrap: word-wrap; horizontal-alignment: center; }
+            }
+        }
+    }
+}
+
+component PreferenceSection inherits Rectangle {
+    in property <length> content-spacing: 16px;
+    border-radius: 14px; background: Palette.surface;
+    border-width: 1px; border-color: Palette.line;
+    height: self.preferred-height;
+    vertical-stretch: 0;
+    VerticalLayout { padding: 20px; spacing: root.content-spacing; @children }
+}
+
+component PreferencesPage inherits Rectangle {
+    VerticalLayout { spacing: 16px;
+        HorizontalLayout { spacing: 8px; alignment: start;
+            ActionButton { text: I18n.tr("Umum"); horizontal-stretch: 0; min-width: 104px; selected: WorkspaceView.preferences-tab == 0; clicked => { WorkspaceView.preferences-tab = 0; } }
+            ActionButton { text: I18n.tr("Timer mini"); horizontal-stretch: 0; min-width: 112px; selected: WorkspaceView.preferences-tab == 1; clicked => { WorkspaceView.preferences-tab = 1; } }
+            ActionButton { text: I18n.tr("Penyimpanan"); horizontal-stretch: 0; min-width: 112px; selected: WorkspaceView.preferences-tab == 2; clicked => { WorkspaceView.preferences-tab = 2; } }
+            ActionButton { text: I18n.tr("Tentang"); horizontal-stretch: 0; min-width: 104px; selected: WorkspaceView.preferences-tab == 3; clicked => { WorkspaceView.preferences-tab = 3; } }
+        }
+        ScrollView {
+            horizontal-scrollbar-policy: always-off; content-width: self.visible-width;
+            VerticalLayout { padding-right: 20px; spacing: 16px;
+                if WorkspaceView.preferences-tab == 0 : PreferenceSection {
+                    Text { text: I18n.tr("Nama tampilan"); color: Palette.ink; font-size: 15px; font-weight: 600; }
+                    TextField { text <=> WorkspaceView.display-name; label: I18n.tr("Nama tampilan, maksimal 60 karakter"); placeholder: I18n.tr("Opsional, mis. Yu"); }
+                    Text { text: I18n.tr("Disimpan di perangkat ini. Hanya tampil di kartu jika kamu memilihnya."); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                    Rectangle { height: 1px; background: Palette.line; }
+                    Text { text: I18n.tr("Bahasa dan tampilan"); color: Palette.ink; font-size: 17px; font-weight: 600; }
+                    HorizontalLayout { spacing: 20px;
+                        Text { text: I18n.indonesian ? "Bahasa" : "Language"; color: Palette.ink; font-size: 12px; vertical-alignment: center; }
+                        HorizontalLayout { width: 280px; horizontal-stretch: 0; spacing: 8px;
+                            ActionButton { text: "English"; selected: !I18n.indonesian; clicked => { WorkspaceView.language(false); } }
+                            ActionButton { text: "Bahasa Indonesia"; selected: I18n.indonesian; clicked => { WorkspaceView.language(true); } }
+                        }
+                    }
+                    HorizontalLayout { spacing: 20px;
+                        Text { text: I18n.tr("Tema"); color: Palette.ink; font-size: 12px; vertical-alignment: center; }
+                        HorizontalLayout { width: 280px; horizontal-stretch: 0; spacing: 8px;
+                            ActionButton { text: I18n.tr("Terang"); selected: !Palette.dark; clicked => { if Palette.dark { WorkspaceView.theme(); } } }
+                            ActionButton { text: I18n.tr("Gelap"); selected: Palette.dark; clicked => { if !Palette.dark { WorkspaceView.theme(); } } }
+                        }
+                    }
+                    Rectangle { height: 1px; background: Palette.line; }
+                    Text { text: I18n.tr("Alarm selesai"); color: Palette.ink; font-size: 15px; font-weight: 600; }
+                    ToggleOption { checked <=> WorkspaceView.alarm-enabled; text: I18n.tr("Bunyikan alarm saat countdown atau segmen selesai"); }
+                    ComboBox { model: ["Soft Bell", "Double Chime", "Bright Tone"]; current-index <=> WorkspaceView.alarm-sound; }
+                    HorizontalLayout { alignment: start;
+                        ActionButton { text: I18n.tr(WorkspaceView.alarm-pending ? "Memutar..." : "Coba bunyi"); enabled: !WorkspaceView.alarm-pending; min-width: 152px; horizontal-stretch: 0; clicked => { WorkspaceView.test-alarm(); } }
+                    }
+                    Text { text: I18n.tr("Bunyi pendek sekali, tanpa pengulangan. Terpisah dari notifikasi desktop. Simpan preferensi untuk menerapkan."); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                    if WorkspaceView.alarm-status != "" : Text { text: I18n.tr(WorkspaceView.alarm-status); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                    Rectangle { height: 1px; background: Palette.line; }
+                    Text { text: I18n.tr("Notifikasi"); color: Palette.ink; font-size: 15px; font-weight: 600; }
+                    ToggleOption { checked <=> WorkspaceView.notifications; text: I18n.tr("Notifikasi desktop ketika segmen atau sesi selesai"); }
+                    HorizontalLayout { alignment: start;
+                        ActionButton { enabled: !WorkspaceView.notification-pending; text: I18n.tr(WorkspaceView.notification-pending ? "Mengirim..." : "Uji notifikasi"); horizontal-stretch: 0; min-width: 152px; clicked => { WorkspaceView.test-notification(); } }
+                    }
+                    if WorkspaceView.notification-status != "" : Text { text: I18n.tr(WorkspaceView.notification-status); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                }
+                if WorkspaceView.preferences-tab == 1 : PreferenceSection {
+                    Text { text: I18n.tr("Timer mini"); color: Palette.ink; font-size: 17px; font-weight: 600; }
+                    ToggleOption { checked <=> WorkspaceView.topmost; text: I18n.tr("Minta timer mini selalu di atas (bergantung OS)"); }
+                    ToggleOption { checked <=> WorkspaceView.framed; text: I18n.tr("Gunakan bingkai sistem pada timer mini"); }
+                    Rectangle { height: 1px; background: Palette.line; }
+                    Text { text: I18n.tr("Opacity timer mini") + " · " + Math.round(WorkspaceView.floating-opacity) + "%"; color: Palette.ink; font-size: 12px; }
+                    HorizontalLayout { spacing: 12px; height: 32px; max-width: 360px;
+                        OpacitySlider { value <=> WorkspaceView.floating-opacity; enabled: WorkspaceView.opacity-supported; released(value) => { WorkspaceView.opacity(value); } }
+                        ActionButton { text: "100%"; horizontal-stretch: 0; min-width: 64px; min-height: 32px; enabled: WorkspaceView.opacity-supported; clicked => { WorkspaceView.opacity(100); } }
+                    }
+                    Text { text: I18n.tr(WorkspaceView.opacity-supported ? "Transparansi seluruh timer. Minimum 50% agar kontrol tetap terlihat." : "Opacity native belum tersedia di platform ini; timer tetap opaque."); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                }
+                if WorkspaceView.preferences-tab == 2 : PreferenceSection {
+                    content-spacing: 10px;
+                    Text { text: I18n.tr("Penyimpanan lokal"); color: Palette.ink; font-size: 17px; font-weight: 600; }
+                    Text { text: I18n.tr("Folder ekspor PNG"); color: Palette.ink; font-size: 12px; }
+                    TextField { text <=> WorkspaceView.export-directory; label: I18n.tr("Folder ekspor PNG"); }
+                    Text { text: I18n.tr("Gunakan path absolut. Perubahan berlaku setelah disimpan."); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                    HorizontalLayout { alignment: start;
+                        ActionButton { text: I18n.tr("Buka folder ekspor"); horizontal-stretch: 0; min-width: 176px; clicked => { WorkspaceView.open-exports(); } }
+                    }
+                    Rectangle { height: 1px; background: Palette.line; }
+                    Text { text: I18n.tr("Data hanya berada di perangkat ini"); color: Palette.ink; font-size: 14px; font-weight: 600; }
+                    Text { text: WorkspaceView.data-path; color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                    HorizontalLayout { alignment: start;
+                        ActionButton { text: I18n.tr("Buka folder data"); horizontal-stretch: 0; min-width: 176px; clicked => { WorkspaceView.open-data(); } }
+                    }
+                }
+                if WorkspaceView.preferences-tab == 3 : PreferenceSection {
+                    HorizontalLayout { spacing: 20px;
+                        Brand { width: 132px; height: 37px; horizontal-stretch: 0; }
+                        Text { text: WorkspaceView.app-version + " | by Yu Prananda"; color: Palette.muted; font-size: 11px; horizontal-alignment: right; vertical-alignment: center; }
+                    }
+                    Text { text: "Make time for what matters."; color: Palette.ink; font-size: 17px; font-weight: 600; }
+                    Text { text: I18n.tr("Pendamping fokus desktop yang tenang, ringan, dan bekerja offline."); color: Palette.muted; font-size: 12px; min-width: 0px; wrap: word-wrap; }
+                    Rectangle { height: 1px; background: Palette.line; }
+                    HorizontalLayout { spacing: 24px;
+                        VerticalLayout { spacing: 10px;
+                            Text { text: I18n.tr("Lisensi dan atribusi"); color: Palette.ink; font-size: 14px; font-weight: 600; }
+                            Text { text: I18n.tr("Aplikasi: GPL-3.0-only. Slint: opsi GPLv3.\nTanpa jaminan; detail lisensi dan source ada di LICENSE dan LICENSING.md.\nPlus Jakarta Sans: SIL OFL 1.1. Aset brand disediakan maintainer."); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                        }
+                        AboutSlint { width: 160px; horizontal-stretch: 0; height: 112px; preferred-height: 112px; }
+                    }
+                }
+            }
+        }
+        if WorkspaceView.preferences-tab != 3 : HorizontalLayout { spacing: 20px;
+            Text { text: I18n.tr("Bahasa, tema, dan opacity langsung tersimpan."); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; vertical-alignment: center; }
+            ActionButton { text: I18n.tr("Simpan preferensi"); horizontal-stretch: 0; min-width: 180px; max-width: 180px; enabled: !WorkspaceView.busy; clicked => { WorkspaceView.save-settings(); } }
+        }
+    }
+}
+
+export component WorkspacePage inherits Rectangle {
+    background: Palette.background;
+    VerticalLayout {
+        padding: 28px; spacing: 14px;
+        Text { text: I18n.tr(WorkspaceView.page == 1 ? I18n.tr("Waktu yang kamu beri.") : WorkspaceView.page == 2 ? I18n.tr("Rayakan dengan caramu.") : WorkspaceView.preferences-tab == 3 ? "Tentang Jikanda" : I18n.tr("Buat ruang yang nyaman.")); color: Palette.ink; font-size: 27px; font-weight: 700; min-width: 0px; wrap: word-wrap; }
+        Text { text: I18n.tr(WorkspaceView.page == 1 ? I18n.tr("Waktu sesi tercatat, bukan ukuran nilai atau hasil kerjamu.") : WorkspaceView.page == 2 ? I18n.tr("Bagikan satu sesi tersimpan. Pilih detail yang ingin ditampilkan.") : WorkspaceView.preferences-tab == 3 ? "Privat, lokal, dan open source." : I18n.tr("Preferensi disimpan di perangkat ini. Tidak ada akun atau sinkronisasi.")); color: Palette.muted; font-size: 12px; min-width: 0px; wrap: word-wrap; }
+        if WorkspaceView.page == 1 : ScrollView {
+            horizontal-scrollbar-policy: always-off;
+            content-width: self.visible-width;
+            VerticalLayout { padding-right: 20px;
+                spacing: 14px;
+                HorizontalLayout {
+                    spacing: 18px;
+                    Rectangle {
+                        min-height: 94px; border-radius: 14px; background: Palette.surface;
+                        VerticalLayout { padding: 16px; spacing: 8px; Text { text: I18n.tr("HARI INI"); color: Palette.muted; font-size: 10px; } Text { text: I18n.tr(WorkspaceView.today-total); color: Palette.ink; font-size: 25px; font-weight: 600; } }
+                    }
+                    Rectangle {
+                        min-height: 94px; border-radius: 14px; background: Palette.surface;
+                        VerticalLayout { padding: 16px; spacing: 8px; Text { text: I18n.tr("7 HARI TERAKHIR"); color: Palette.muted; font-size: 10px; } Text { text: I18n.tr(WorkspaceView.week-total); color: Palette.ink; font-size: 25px; font-weight: 600; } }
+                    }
+                }
+                Text { text: I18n.tr(WorkspaceView.summary-detail); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                HorizontalLayout {
+                    spacing: 12px; min-height: 112px;
+                    for day in WorkspaceView.days : Rectangle {
+                        VerticalLayout {
+                            spacing: 5px;
+                            Text { min-width: 0px; overflow: elide; text: I18n.tr(day.duration); color: Palette.muted; font-size: 9px; horizontal-alignment: center; }
+                            Rectangle { min-height: 66px; background: transparent;
+                                Rectangle { x: (parent.width - self.width) / 2; y: parent.height - self.height; width: 28px; height: max(2px, parent.height * day.value); border-radius: 5px; background: Palette.accent; }
+                            }
+                            Text { text: I18n.tr(day.label); color: Palette.muted; font-size: 10px; horizontal-alignment: center; }
+                        }
+                    }
+                }
+                Text { text: I18n.tr("Riwayat sesi"); color: Palette.ink; font-size: 18px; font-weight: 600; }
+                if WorkspaceView.history.length == 0 : Rectangle {
+                    min-height: 140px; background: Palette.surface; border-radius: 14px;
+                    VerticalLayout { padding: 24px; spacing: 12px;
+                        Text { text: I18n.tr("Belum ada sesi tersimpan."); color: Palette.ink; font-size: 16px; }
+                        Text { text: I18n.tr("Mulai dari sedikit waktu untuk hal yang kamu pilih."); color: Palette.muted; font-size: 12px; }
+                    }
+                }
+                for entry in WorkspaceView.history : Rectangle {
+                    min-height: 108px; background: Palette.surface; border-radius: 12px;
+                    HorizontalLayout {
+                        padding: 15px; spacing: 14px;
+                        VerticalLayout { spacing: 5px;
+                            Text { text: entry.session-name != "" ? entry.session-name : I18n.tr("Sesi tanpa nama"); color: Palette.ink; font-size: 14px; font-weight: 600; min-width: 0px; wrap: word-wrap; max-lines: 2; overflow: elide; }
+                            Text { min-width: 0px; overflow: elide; text: I18n.tr(entry.title) + " · " + I18n.tr(entry.duration); color: Palette.muted; font-size: 11px; }
+                            Text { text: I18n.tr(entry.detail); color: Palette.muted; font-size: 10px; min-width: 0px; wrap: word-wrap; }
+                            if entry.task-summary != "" : Text { text: I18n.tr(entry.task-summary); color: Palette.muted; font-size: 11px; }
+                            if entry.note != "" : Text { text: entry.note; color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; max-lines: 2; overflow: elide; }
+                        }
+                        Rectangle { width: 174px; min-height: 84px; horizontal-stretch: 0;
+                            ActionButton { x: 0px; y: 0px; width: 174px; height: 36px; text: I18n.tr("Buat kartu"); clicked => { WorkspaceView.share-session(entry.id); } }
+                            ActionButton { x: 0px; y: 48px; width: 80px; height: 36px; text: I18n.tr("Ubah"); clicked => { WorkspaceView.edit(entry.id); } }
+                            ActionButton { x: 94px; y: 48px; width: 80px; height: 36px; text: I18n.tr("Hapus"); clicked => { WorkspaceView.delete(entry.id); } }
+                        }
+                    }
+                }
+                HorizontalLayout {
+                    spacing: 10px;
+                    ActionButton { text: I18n.tr("Sebelumnya"); enabled: WorkspaceView.previous-page; clicked => { WorkspaceView.page-history(-1); } }
+                    Text { text: I18n.tr(WorkspaceView.history-page); color: Palette.muted; vertical-alignment: center; horizontal-alignment: center; }
+                    ActionButton { text: I18n.tr("Berikutnya"); enabled: WorkspaceView.next-page; clicked => { WorkspaceView.page-history(1); } }
+                    ActionButton { text: I18n.tr("Hapus semua"); clicked => { WorkspaceView.clear-history(); } }
+                }
+            }
+        }
+        if WorkspaceView.page == 2 : CardsPage { vertical-stretch: 1; }
+        if WorkspaceView.page == 3 : PreferencesPage { vertical-stretch: 1; }
+        if WorkspaceView.unsaved && !WorkspaceView.busy : ActionButton { text: I18n.tr("Coba simpan lagi"); clicked => { WorkspaceView.retry-save(); } }
+        if WorkspaceView.notice != "" && !(WorkspaceView.page == 3 && WorkspaceView.preferences-tab == 3 && WorkspaceView.notice == "Preferensi diperbarui. Durasi sesi aktif tidak diubah.") : Text { text: I18n.tr(WorkspaceView.notice); color: Palette.muted; font-size: 11px; min-width: 0px; wrap: word-wrap; max-lines: 3; overflow: elide; }
+        if WorkspaceView.unsaved && !WorkspaceView.busy : Text { text: I18n.tr(WorkspaceView.io-status); color: Palette.muted; font-size: 10px; min-width: 0px; wrap: word-wrap; max-lines: 2; overflow: elide; }
+    }
+}
+
+export component DialogLayer inherits FocusScope {
+    private property <bool> editing: WorkspaceView.dialog == 5;
+    private property <bool> three-actions: WorkspaceView.dialog == 1 || WorkspaceView.dialog == 2 || WorkspaceView.dialog == 6;
+    init => { self.focus(); }
+    key-pressed(e) => { if e.text == Key.Escape && !WorkspaceView.busy { WorkspaceView.dialog-cancel(); return accept; } return reject; }
+    Rectangle { background: #0d0d0dd9; }
+    TouchArea { }
+    Rectangle {
+        width: min(parent.width - 48px, root.editing ? 560px : root.three-actions ? 520px : 480px);
+        height: root.editing ? min(540px, parent.height - 48px) : min(self.preferred-height, parent.height - 48px);
+        border-radius: 18px; background: Palette.surface; border-width: 1px; border-color: Palette.line;
+        VerticalLayout { padding: 24px; spacing: 14px;
+            Text { text: I18n.tr(WorkspaceView.dialog-title); color: Palette.ink; font-size: 21px; font-weight: 600; min-width: 0px; wrap: word-wrap; }
+            Text { text: I18n.tr(WorkspaceView.dialog-detail); color: Palette.muted; font-size: 12px; min-width: 0px; wrap: word-wrap; }
+            if WorkspaceView.dialog == 5 : ScrollView {
+            horizontal-scrollbar-policy: always-off;
+            content-width: self.visible-width;
+            VerticalLayout { padding-right: 20px;
+                spacing: 10px;
+                HorizontalLayout { spacing: 8px;
+                    ActionButton { text: "Pomodoro"; selected: WorkspaceView.edit-mode == 1; clicked => { WorkspaceView.edit-mode = 1; } }
+                    ActionButton { text: "Deep Focus"; selected: WorkspaceView.edit-mode == 0; clicked => { WorkspaceView.edit-mode = 0; } }
+                    ActionButton { text: I18n.tr("Flow"); selected: WorkspaceView.edit-mode == 2; clicked => { WorkspaceView.edit-mode = 2; } }
+                }
+                Text { text: I18n.tr("Waktu lokal · YYYY-MM-DD HH:MM:SS"); color: Palette.muted; font-size: 11px; }
+                TextField { text <=> WorkspaceView.edit-start; label: I18n.tr("Waktu mulai lokal"); }
+                TextField { text <=> WorkspaceView.edit-end; label: I18n.tr("Waktu selesai lokal"); }
+                Text { text: I18n.tr("Durasi fokus · detik"); color: Palette.muted; font-size: 11px; }
+                TextField { text <=> WorkspaceView.edit-seconds; label: I18n.tr("Durasi fokus yang benar dalam detik"); }
+                Text { text: I18n.tr("Nama sesi"); color: Palette.muted; font-size: 11px; }
+                TextField { text <=> WorkspaceView.edit-session-name; label: I18n.tr("Nama sesi, maksimal 120 karakter"); }
+                if WorkspaceView.edit-note != "" : TextField { text <=> WorkspaceView.edit-note; label: I18n.tr("Catatan lama, maksimal 160 karakter"); }
+                ToggleOption { checked <=> WorkspaceView.edit-completed; text: I18n.tr("Sesi selesai (matikan untuk terputus)"); }
+                if WorkspaceView.edit-tasks.length > 0 : Text { text: I18n.tr("Tugas saat sesi dicatat"); color: Palette.ink; font-size: 12px; font-weight: 600; }
+                for task in WorkspaceView.edit-tasks : HorizontalLayout { spacing: 8px;
+                    Text { text: task.completed ? "✓" : "○"; color: Palette.muted; }
+                    Text { text: task.title; color: Palette.ink; font-size: 11px; min-width: 0px; wrap: word-wrap; }
+                }
+            }
+            }
+            if WorkspaceView.notice != "" : Text { text: I18n.tr(WorkspaceView.notice); color: Palette.muted; min-width: 0px; wrap: word-wrap; font-size: 11px; max-lines: 2; overflow: elide; }
+            HorizontalLayout { spacing: 10px; alignment: end;
+                ActionButton { horizontal-stretch: 0; min-width: 104px; text: I18n.tr("Kembali"); enabled: !WorkspaceView.busy; clicked => { WorkspaceView.dialog-cancel(); } }
+                if root.three-actions : ActionButton { horizontal-stretch: 0; min-width: 152px; text: I18n.tr(WorkspaceView.dialog == 6 ? I18n.tr("Keluar tanpa simpan") : I18n.tr("Buang sesi")); enabled: !WorkspaceView.busy; clicked => { WorkspaceView.dialog-discard(); } }
+                ActionButton {
+                    horizontal-stretch: 0; min-width: root.editing || root.three-actions ? 148px : 104px;
+                    text: I18n.tr(WorkspaceView.dialog == 7 ? "Sesi baru" : WorkspaceView.dialog == 5 ? I18n.tr("Simpan perubahan") : WorkspaceView.dialog == 3 || WorkspaceView.dialog == 4 ? I18n.tr("Ya, hapus") : WorkspaceView.dialog == 2 || WorkspaceView.dialog == 6 ? I18n.tr("Simpan & keluar") : I18n.tr("Simpan sesi"));
+                    enabled: !WorkspaceView.busy;
+                    clicked => { if WorkspaceView.dialog == 5 { WorkspaceView.save-edit(); } else { WorkspaceView.dialog-save(); } }
+                }
+            }
+        }
+    }
+}
+
+export component ErrorWindow inherits Window {
+    in property <string> message;
+    title: I18n.tr("Jikanda — data tidak dibuka");
+    preferred-width: 540px; min-width: 420px; min-height: 180px; max-height: 520px; background: #f3f3f3;
+    VerticalLayout { padding: 28px; spacing: 18px;
+        Text { text: I18n.tr("Data lokal tidak diubah."); font-size: 23px; color: #252525; }
+        Text { text: I18n.tr(root.message); min-width: 0px; wrap: word-wrap; color: #3a3a3a; font-size: 13px; }
+        Text { text: I18n.tr("Tutup jendela ini, lalu periksa folder data atau instance Jikanda lain."); min-width: 0px; wrap: word-wrap; color: #5f5f5f; font-size: 12px; }
+    }
+}

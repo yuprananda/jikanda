@@ -1,0 +1,72 @@
+﻿{
+    "measuredAt":  "2026-11-09T12:16:30.3346930+08:00",
+    "os":  {
+               "Caption":  "Microsoft Windows 11 Home Single Language",
+               "Version":  "10.0.26200",
+               "OSArchitecture":  "64-bit"
+           },
+    "cpu":  {
+                "Name":  "13th Gen Intel(R) Core(TM) i5-13420H",
+                "NumberOfLogicalProcessors":  12
+            },
+    "ramBytes":  16791048192,
+    "profile":  "release; thin LTO; stripped; Winit software renderer; accessibility enabled",
+    "executableSha256":  "274F99896AF809703240090AD337F1CA4A42F3563E89883F3CD78567B492CAA6",
+    "method":  "3s warm-up, process CPU delta, end-of-sample working set/private bytes; startup polls MainWindowHandle every 20ms, not first paint; single warm run per case",
+    "results":  [
+                    {
+                        "layout":  "main",
+                        "state":  "idle",
+                        "nativeWindowStartupMs":  144.2,
+                        "workingSetMiB":  29.46,
+                        "privateBytesMiB":  10.17,
+                        "cpuPercentOneCore":  0,
+                        "sampleSeconds":  5
+                    },
+                    {
+                        "layout":  "main",
+                        "state":  "running",
+                        "nativeWindowStartupMs":  70,
+                        "workingSetMiB":  29.58,
+                        "privateBytesMiB":  10.24,
+                        "cpuPercentOneCore":  0.312,
+                        "sampleSeconds":  5.01
+                    },
+                    {
+                        "layout":  "floating",
+                        "state":  "idle",
+                        "nativeWindowStartupMs":  69.6,
+                        "workingSetMiB":  23.11,
+                        "privateBytesMiB":  4.79,
+                        "cpuPercentOneCore":  0,
+                        "sampleSeconds":  5.01
+                    },
+                    {
+                        "layout":  "floating",
+                        "state":  "running",
+                        "nativeWindowStartupMs":  76.6,
+                        "workingSetMiB":  23.52,
+                        "privateBytesMiB":  4.96,
+                        "cpuPercentOneCore":  0,
+                        "sampleSeconds":  5
+                    },
+                    {
+                        "layout":  "both",
+                        "state":  "idle",
+                        "nativeWindowStartupMs":  66.4,
+                        "workingSetMiB":  29.05,
+                        "privateBytesMiB":  10.39,
+                        "cpuPercentOneCore":  0,
+                        "sampleSeconds":  5.01
+                    },
+                    {
+                        "layout":  "both",
+                        "state":  "running",
+                        "nativeWindowStartupMs":  61.6,
+                        "workingSetMiB":  29.34,
+                        "privateBytesMiB":  10.5,
+                        "cpuPercentOneCore":  0,
+                        "sampleSeconds":  5
+                    }
+                ]
+}

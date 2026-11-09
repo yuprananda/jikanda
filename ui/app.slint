@@ -1,0 +1,293 @@
+// Copyright (C) 2026 Yu Prananda
+// SPDX-License-Identifier: GPL-3.0-only
+
+import "../assets/fonts/PlusJakartaSans.ttf";
+import { I18n } from "i18n.slint";
+import { Palette } from "tokens.slint";
+import { ActionButton } from "action-button.slint";
+import { Brand, Glyph, IconButton, NavItem, ProgressRing, SessionMetric } from "components.slint";
+export { Palette } from "tokens.slint";
+export { Palette as StandardPalette } from "std-widgets.slint";
+import { ScrollView } from "std-widgets.slint";
+import { WorkspaceView, WorkspacePage, DialogLayer, SessionTasks, TextField, MiniSessionTasks } from "workspace.slint";
+export { WorkspaceView, HistoryRow, DayBar, CardWindow, ErrorWindow, TaskRow } from "workspace.slint";
+export { I18n } from "i18n.slint";
+
+export global SessionView {
+    in-out property <int> mode: 0;
+    in-out property <string> mode-label: I18n.tr("DEEP FOCUS");
+    in-out property <string> mode-caption: "Satu sesi tanpa jeda paksa";
+    in-out property <bool> show-scene: true;
+    in-out property <string> time: "25:00";
+    in-out property <bool> long-time: false;
+    in-out property <string> status: "Siap saat kamu siap";
+    in-out property <string> action: "Mulai fokus";
+    in-out property <bool> active: false;
+    in-out property <bool> running: false;
+    in-out property <bool> completed: false;
+    in-out property <float> remaining: 1;
+    in-out property <int> duration-seconds: 1500;
+    in-out property <string> session-name;
+    in-out property <string> platform-note;
+    in-out property <string> duration-note: "Satu sesi, tanpa jeda paksa.";
+    callback toggle;
+    callback select-mode(int);
+    callback finish-flow;
+    callback edit-session-name(string);
+    callback stop;
+    callback duration(int);
+    callback custom-duration(string);
+    callback floating;
+    callback close-floating;
+    callback theme;
+    callback quit;
+}
+
+export component MainWindow inherits Window {
+    icon: @image-url("../assets/brand/exports/jikanda-256.png");
+    in-out property <bool> decorated: false;
+    title: I18n.tr("Jikanda");
+    no-frame: !root.decorated;
+    preferred-width: 1120px;
+    preferred-height: 720px;
+    min-width: 1000px;
+    min-height: 680px;
+    background: Palette.background;
+    default-font-family: "Plus Jakarta Sans";
+    default-font-size: 13px;
+
+    // Opaque native window; translucent panels blend with our own static scene.
+    // No desktop blur or compositor-specific effects are required.
+    content := FocusScope {
+    enabled: WorkspaceView.dialog == 0;
+    sidebar := Rectangle {
+        x: 0px; y: 0px;
+        width: 168px; height: parent.height;
+        background: Palette.sidebar;
+        Brand { compact: true; x: (parent.width - self.width) / 2; y: (44px - self.height) / 2; width: 98px; height: 27px; }
+        Text { x: 24px; y: 108px; text: I18n.tr("RUANG PRIBADIMU"); color: Palette.muted; font-size: 9px; font-weight: 600; }
+        VerticalLayout {
+            x: 12px; y: 138px; width: parent.width - 24px;
+            spacing: 8px; alignment: start;
+            NavItem { text: I18n.tr("Fokus"); icon: "play"; selected: WorkspaceView.page == 0; clicked => { WorkspaceView.navigate(0); } }
+            NavItem { text: I18n.tr("Timer mini"); icon: "floating"; clicked => { SessionView.floating(); } }
+            NavItem { text: I18n.tr("Riwayat"); icon: "note"; selected: WorkspaceView.page == 1; clicked => { WorkspaceView.navigate(1); } }
+            NavItem { text: I18n.tr("Kartu"); icon: "card"; selected: WorkspaceView.page == 2; clicked => { WorkspaceView.navigate(2); } }
+            NavItem { text: I18n.tr("Preferensi"); icon: "theme"; selected: WorkspaceView.page == 3; clicked => { WorkspaceView.navigate(3); } }
+        }
+        Rectangle {
+            x: 12px; y: parent.height - self.height - 24px;
+            width: parent.width - 24px; height: 140px;
+            background: transparent;
+            Rectangle { x: 12px; y: 0px; width: parent.width - 24px; height: 1px; background: Palette.line; }
+            NavItem {
+                y: 13px; width: parent.width; height: 44px;
+                text: Palette.dark ? I18n.tr("Mode terang") : I18n.tr("Mode gelap");
+                icon: "theme"; clicked => { SessionView.theme(); }
+            }
+            Text {
+                x: 14px; y: 73px; width: parent.width - 28px; height: 38px;
+                text: I18n.tr("Make time for\nwhat matters.");
+                color: Palette.muted; font-size: 11px;
+            }
+            Text {
+                x: 14px; y: 122px; width: parent.width - 28px; height: 14px;
+                text: I18n.tr("by Yu Prananda"); color: Palette.muted; font-size: 9px;
+            }
+        }
+    }
+
+    stage := Rectangle {
+        x: sidebar.width; y: 0px; width: parent.width - sidebar.width; height: parent.height;
+        background: Palette.background;
+        // Static monochrome title area.
+        Rectangle { x: 0px; y: 0px; width: parent.width; height: 44px; background: Palette.button; }
+        WindowMoveArea {
+            x: 0px; y: 0px;
+            width: parent.width - 142px; height: 44px;
+            Text { x: 32px; height: parent.height; vertical-alignment: center; text: I18n.tr("JIKANDA / " + SessionView.mode-label); color: Palette.muted; font-size: 10px; }
+            if WorkspaceView.page == 0 && WorkspaceView.unsaved && !WorkspaceView.busy : Text { x: 225px; height: parent.height; vertical-alignment: center; width: parent.width - 260px; text: I18n.tr(WorkspaceView.io-status); color: Palette.muted; font-size: 9px; overflow: elide; }
+        }
+        if WorkspaceView.unsaved && !WorkspaceView.busy : ActionButton { x: parent.width - 264px; y: 8px; width: 118px; height: 28px; min-height: 28px; text: I18n.tr("Simpan lagi"); clicked => { WorkspaceView.retry-save(); } }
+        HorizontalLayout {
+            x: parent.width - 108px; y: 8px; width: 92px; height: 28px; spacing: 4px;
+            IconButton { compact: true; icon: "minimize"; label: I18n.tr("Minimalkan jendela"); clicked => { root.minimized = true; } }
+            IconButton { compact: true; icon: "maximize"; label: I18n.tr("Maksimalkan atau pulihkan jendela"); clicked => { root.maximized = !root.maximized; } }
+            IconButton { compact: true; icon: "close"; label: I18n.tr("Keluar dari Jikanda"); clicked => { SessionView.quit(); } }
+        }
+
+        if WorkspaceView.page == 0 : Rectangle {
+        x: 0px; y: 44px; width: parent.width; height: parent.height - 44px;
+        focus-area := Rectangle {
+            x: 28px; y: 22px;
+            width: parent.width - 328px; height: parent.height - 22px;
+            background: transparent; clip: true;
+            Text {
+                width: parent.width; y: 5px;
+                text: SessionView.session-name != "" ? SessionView.session-name : I18n.tr("Waktunya untuk yang berarti."); overflow: elide;
+                color: Palette.ink; font-size: 28px; font-weight: 700;
+                horizontal-alignment: center;
+            }
+            Text {
+                width: parent.width; y: 49px;
+                text: I18n.tr("Pelan-pelan, satu hal penting dalam satu waktu.");
+                color: Palette.muted; font-size: 12px; overflow: elide;
+                horizontal-alignment: center;
+            }
+            ring := ProgressRing {
+                x: (parent.width - self.width) / 2;
+                y: parent.height < 620px ? 90px : 108px;
+                width: parent.height < 620px ? 284px : 312px; height: self.width;
+                remaining: SessionView.remaining;
+                accent: Palette.accent;
+                Rectangle {
+                    x: (parent.width - self.width) / 2; y: parent.height * 0.21;
+                    width: parent.width * 0.34; height: 28px; border-radius: 14px;
+                    background: #ffffff14;
+                    Text { text: I18n.tr(SessionView.completed ? I18n.tr("SELESAI") : SessionView.mode-label); color: Palette.ink; font-size: 10px; font-weight: 600; horizontal-alignment: center; vertical-alignment: center; }
+                }
+                Text {
+                    x: parent.width * 0.11; y: parent.height * 0.34;
+                    width: parent.width * 0.78; height: parent.height * 0.29;
+                    text: SessionView.time; color: Palette.ink;
+                    font-size: parent.width * (SessionView.long-time ? 0.12 : 0.19); font-weight: 700;
+                    horizontal-alignment: center; vertical-alignment: center; overflow: elide;
+                    accessible-label: I18n.tr("Waktu sesi ") + SessionView.time;
+                }
+                Rectangle {
+                    x: parent.width * 0.14; y: parent.height * 0.68;
+                    width: parent.width * 0.72; height: parent.height * 0.16;
+                    background: transparent; clip: true;
+                    Text {
+                        width: parent.width; height: parent.height;
+                        text: I18n.tr(SessionView.status); color: Palette.muted; font-size: 11px;
+                        horizontal-alignment: center; vertical-alignment: center; wrap: word-wrap;
+                    }
+                }
+                Rectangle { x: parent.width / 2 - 3px; y: parent.height * 0.88; width: 6px; height: 6px; border-radius: 3px; background: SessionView.running ? #d0d0d0 : #9a9a9a; }
+
+            }
+            Rectangle {
+                x: (parent.width - 122px) / 2; y: ring.y + ring.height + 23px; width: 122px; height: 60px;
+                background: transparent;
+                IconButton {
+                    x: 0px; y: 0px;
+                    width: 60px; height: 60px; primary: true; round: true;
+                    icon: SessionView.running ? "pause" : "play";
+                    label: I18n.tr(SessionView.action); clicked => { SessionView.toggle(); }
+                }
+                IconButton {
+                    x: 78px; y: 8px;
+                    width: 44px; height: 44px; round: true;
+                    icon: "stop"; ink: Palette.ink; label: I18n.tr("Hentikan sesi"); enabled: SessionView.active;
+                    clicked => { SessionView.stop(); }
+                }
+            }
+            Text { y: ring.y + ring.height + 95px; width: parent.width; text: I18n.tr(SessionView.action); color: Palette.muted; font-size: 11px; horizontal-alignment: center; }
+            if !SessionView.active && WorkspaceView.saved-session != "" : ActionButton {
+                x: (parent.width - self.width) / 2; y: ring.y + ring.height + 120px;
+                width: 168px; height: 32px; min-height: 32px; text-size: 11px;
+                text: I18n.tr("Buat kartu"); enabled: !WorkspaceView.busy && !WorkspaceView.unsaved;
+                clicked => { WorkspaceView.share-session(WorkspaceView.saved-session); }
+            }
+            if WorkspaceView.notice != "" && WorkspaceView.notice != "Preferensi diperbarui. Durasi sesi aktif tidak diubah." : Text { x: 8px; y: ring.y + ring.height + (!SessionView.active && WorkspaceView.saved-session != "" ? 160px : 125px); width: parent.width - 16px; text: I18n.tr(WorkspaceView.notice); color: Palette.muted; font-size: 11px; wrap: word-wrap; max-lines: 3; overflow: elide; horizontal-alignment: center; }
+
+        }
+
+        Rectangle {
+            x: parent.width - 272px; y: 16px;
+            width: 248px; height: parent.height - 32px;
+            background: Palette.panel; border-radius: 18px; clip: true;
+            border-width: 1px; border-color: Palette.line;
+            ScrollView {
+                horizontal-scrollbar-policy: always-off; content-width: self.visible-width;
+                VerticalLayout {
+                padding: 14px; padding-right: 26px; spacing: 8px; alignment: start;
+                VerticalLayout { spacing: 6px; vertical-stretch: 0;
+                    HorizontalLayout { spacing: 6px; min-height: 28px; max-height: 28px;
+                        Text { text: I18n.tr("Nama sesi"); color: Palette.ink; font-size: 12px; font-weight: 600; vertical-alignment: center; }
+                        ActionButton { text: I18n.tr("Sesi baru"); text-size: 10px; horizontal-padding: 4px; min-width: 84px; max-width: 84px; min-height: 28px; max-height: 28px; enabled: !SessionView.active; clicked => { WorkspaceView.new-session(); } }
+                    }
+                    TextField { text <=> SessionView.session-name; min-height: 38px; max-height: 38px; enabled: !SessionView.active; label: I18n.tr("Nama sesi, maksimal 120 karakter"); placeholder: I18n.tr("Mis. Belajar Rust"); edited => { SessionView.edit-session-name(SessionView.session-name); } }
+                }
+                Rectangle { height: 1px; background: Palette.line; }
+                Text { text: I18n.tr("Sesi fokus"); color: Palette.ink; font-size: 13px; font-weight: 600; }
+                HorizontalLayout { spacing: 5px; min-height: 36px; max-height: 36px;
+                    ActionButton { text: "Pomodoro"; text-size: 11px; horizontal-padding: 4px; min-width: 72px; max-width: 72px; selected: SessionView.mode == 1; enabled: !SessionView.active; clicked => { SessionView.select-mode(1); } }
+                    ActionButton { text: "Deep Focus"; text-size: 11px; horizontal-padding: 4px; min-width: 80px; max-width: 80px; selected: SessionView.mode == 0; enabled: !SessionView.active; clicked => { SessionView.select-mode(0); } }
+                    ActionButton { text: "Flow"; text-size: 11px; horizontal-padding: 4px; min-width: 44px; max-width: 44px; selected: SessionView.mode == 2; enabled: !SessionView.active; clicked => { SessionView.select-mode(2); } }
+                }
+                if SessionView.mode != 2 : VerticalLayout {
+                    vertical-stretch: 0;
+                    spacing: 9px;
+                    HorizontalLayout { spacing: 8px;
+                        SessionMetric { value: SessionView.mode == 1 ? "25" : "50"; label: I18n.tr("Fokus · menit"); }
+                        if SessionView.mode == 1 : SessionMetric { value: "5"; label: I18n.tr("Istirahat · menit"); }
+                    }
+                    if SessionView.mode == 1 : Text { text: I18n.tr(SessionView.mode-caption); color: Palette.ink; font-size: 11px; font-weight: 600; wrap: word-wrap; }
+                    Text { text: SessionView.mode == 1 ? I18n.tr("Mulai tiap segmen saat siap. Istirahat tidak dihitung.") : I18n.tr("Tanpa jeda paksa. Kamu tetap bisa menjeda atau menghentikan sesi."); color: Palette.muted; font-size: 11px; wrap: word-wrap; }
+                }
+                if SessionView.mode == 2 : VerticalLayout {
+                    vertical-stretch: 0;
+                    spacing: 14px;
+                    Text { text: I18n.tr("Ikuti alurnya."); color: Palette.ink; font-size: 20px; font-weight: 600; }
+                    Text { text: I18n.tr("Waktu bertambah tanpa batas sesi. Istirahat lewat Jeda; pilih Selesai untuk menyimpan sesi yang kamu akhiri dengan sengaja."); color: Palette.muted; font-size: 12px; wrap: word-wrap; }
+                    ActionButton { text: I18n.tr("Selesai & simpan"); enabled: SessionView.active; clicked => { SessionView.finish-flow(); } }
+                }
+                SessionTasks { min-height: 220px; max-height: 220px; vertical-stretch: 0; }
+            }
+            }
+        }
+        }
+        if WorkspaceView.page != 0 : WorkspacePage {
+            x: 0px; y: 44px; width: parent.width; height: parent.height - 44px;
+        }
+    }
+    }
+    Rectangle { width: parent.width; height: parent.height; background: transparent; border-width: 1px; border-color: #a4a4a466; }
+    if WorkspaceView.dialog != 0 : DialogLayer { }
+}
+
+export component FloatingTimer inherits Window {
+    icon: @image-url("../assets/brand/exports/jikanda-256.png");
+    in-out property <bool> expanded: false;
+    in-out property <bool> decorated: false;
+    in-out property <bool> keep-on-top: true;
+    title: I18n.tr("Jikanda timer");
+    no-frame: !root.decorated;
+    always-on-top: root.keep-on-top;
+    preferred-width: 228px; preferred-height: root.expanded ? 232px : 112px;
+    min-width: 228px; min-height: root.expanded ? 232px : 112px;
+    background: Palette.dark ? #282828 : #f3f3f3;
+    default-font-family: "Plus Jakarta Sans";
+    default-font-size: 12px;
+    Rectangle {
+        border-width: 1px; border-color: Palette.line;
+        background: transparent;
+        WindowMoveArea {
+            x: 12px; y: 4px; width: parent.width - 80px; height: 24px;
+            Brand { compact: true; scale: 0.75; x: 0px; y: 2px; width: 74px; height: 20px; }
+        }
+        HorizontalLayout {
+            x: parent.width - 64px; y: 4px; width: 52px; height: 24px; spacing: 4px;
+            IconButton { compact: true; tiny: true; icon: "minimize"; label: I18n.tr("Minimalkan timer"); clicked => { root.minimized = true; } }
+            IconButton { compact: true; tiny: true; icon: "close"; label: I18n.tr("Kembali ke jendela utama"); clicked => { SessionView.close-floating(); } }
+        }
+        WindowMoveArea {
+            x: 12px; y: 33px; width: parent.width - 100px; height: 39px;
+            Text { x: 0px; y: 0px; width: parent.width; height: parent.height; vertical-alignment: center; text: I18n.tr(SessionView.time); color: Palette.ink; font-size: SessionView.long-time ? 16px : 30px; overflow: elide; font-weight: 700; }
+        }
+        HorizontalLayout {
+            x: parent.width - 84px; y: 37px; width: 72px; height: 32px; spacing: 8px;
+            IconButton { compact: true; icon: SessionView.running ? "pause" : "play"; label: I18n.tr(SessionView.action); primary: true; round: true; clicked => { SessionView.toggle(); } }
+            IconButton { compact: true; icon: "stop"; border-color: Palette.line; label: I18n.tr("Hentikan sesi"); round: true; enabled: SessionView.active; clicked => { SessionView.stop(); } }
+        }
+        Rectangle {
+            x: 12px; y: 80px; width: parent.width - 24px; height: 3px;
+            border-radius: 2.5px; background: Palette.line;
+            Rectangle { width: parent.width * SessionView.remaining; height: parent.height; border-radius: 2.5px; background: Palette.accent; }
+        }
+        Text { x: 12px; y: 91px; width: parent.width - 24px; height: 14px; vertical-alignment: center; overflow: elide; text: I18n.tr(SessionView.completed ? I18n.tr("Sesi selesai. Terima kasih!") : SessionView.status); color: Palette.muted; font-size: 9px; }
+        if root.expanded : MiniSessionTasks { x: 12px; y: 116px; width: parent.width - 24px; height: parent.height - 124px; session-name: SessionView.session-name; }
+    }
+}

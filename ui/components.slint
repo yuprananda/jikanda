@@ -1,0 +1,176 @@
+// Copyright (C) 2026 Yu Prananda
+// SPDX-License-Identifier: GPL-3.0-only
+
+import { I18n } from "i18n.slint";
+import { Palette } from "tokens.slint";
+
+export component Brand inherits HorizontalLayout {
+    in property <color> ink: Palette.ink;
+    in property <bool> compact: false;
+    in property <float> scale: 1;
+    spacing: 5px * root.scale;
+    Image {
+        width: (root.compact ? 25px : 35px) * root.scale; height: (root.compact ? 27px : 37px) * root.scale;
+        source: @image-url("../assets/brand/exports/mascot-concept-mask.png");
+        image-fit: contain; colorize: root.ink;
+    }
+    Image {
+        width: (root.compact ? 68px : 94px) * root.scale; height: (root.compact ? 27px : 37px) * root.scale;
+        source: @image-url("../assets/brand/exports/wordmark-concept-mask.png");
+        image-fit: contain; colorize: root.ink;
+    }
+}
+
+export component Glyph inherits Path {
+    in property <string> kind;
+    in property <color> ink: Palette.ink;
+    width: 20px; height: 20px;
+    viewbox-width: 24; viewbox-height: 24;
+    stroke: root.ink; stroke-width: 1.7px;
+    stroke-line-cap: round; stroke-line-join: round;
+    commands: root.kind == "empty" ? "" : root.kind == "play" ? "M8 5 L19 12 L8 19 Z"
+        : root.kind == "pause" ? "M8 5 L8 19 M16 5 L16 19"
+        : root.kind == "stop" ? "M6 6 L18 6 L18 18 L6 18 Z"
+        : root.kind == "close" ? "M6 6 L18 18 M18 6 L6 18"
+        : root.kind == "minimize" ? "M5 12 L19 12"
+        : root.kind == "maximize" ? "M5 5 L19 5 L19 19 L5 19 Z"
+        : root.kind == "floating" ? "M4 5 L20 5 L20 19 L4 19 Z M13 11 L20 11 M13 11 L13 19"
+        : root.kind == "card" ? "M4 5 L20 5 L20 19 L4 19 Z M7 15 L10 11 L14 15 L17 12 M8 8 L9 8"
+        : root.kind == "theme" ? "M12 4 A8 8 0 1 0 20 12 A7 7 0 0 1 12 4 Z"
+        : root.kind == "check" ? "M5 12 L10 17 L20 7"
+        : "M5 6 L19 6 M5 12 L19 12 M5 18 L19 18";
+    fill: root.kind == "play" || root.kind == "stop" ? root.ink : transparent;
+}
+
+export component IconButton inherits Rectangle {
+    in property <string> icon;
+    in property <string> label;
+    in property <bool> enabled: true;
+    in property <bool> primary: false;
+    in property <bool> round: false;
+    in property <bool> compact: false;
+    in property <bool> tiny: false;
+    in property <color> ink: Palette.ink;
+    callback clicked;
+    forward-focus: focus;
+    min-width: root.tiny ? 24px : root.compact ? 28px : 34px; min-height: root.tiny ? 24px : root.compact ? 28px : 34px;
+    border-radius: root.round ? self.width / 2 : 8px;
+    background: root.primary ? (touch.pressed ? Palette.muted : Palette.accent)
+        : touch.pressed ? Palette.line : touch.has-hover ? Palette.hover : root.compact ? transparent : Palette.button;
+    border-width: focus.has-focus ? 2px : 1px;
+    border-color: focus.has-focus ? root.ink : root.compact ? transparent : Palette.line;
+    opacity: root.enabled ? 1 : 0.35;
+    accessible-role: button;
+    accessible-label: I18n.tr(root.label);
+    accessible-enabled: root.enabled;
+    accessible-action-default => { if root.enabled { root.clicked(); } }
+    Glyph {
+        x: (parent.width - self.width) / 2; y: (parent.height - self.height) / 2;
+        width: root.tiny ? 14px : root.compact ? 16px : 20px; height: root.tiny ? 14px : root.compact ? 16px : 20px;
+        kind: root.icon;
+        ink: root.primary ? Palette.background : root.ink;
+    }
+    focus := FocusScope {
+        enabled: root.enabled;
+        key-pressed(event) => {
+            if event.text == Key.Space || event.text == Key.Return { root.clicked(); return accept; }
+            return reject;
+        }
+    }
+    touch := TouchArea { enabled: root.enabled; clicked => { focus.focus(); root.clicked(); } }
+}
+
+export component NavItem inherits Rectangle {
+    in property <string> text;
+    in property <string> icon;
+    in property <bool> selected: false;
+    callback clicked;
+    forward-focus: focus;
+    min-height: 44px;
+    border-radius: 10px;
+    background: root.selected ? Palette.selected : touch.has-hover ? Palette.hover : transparent;
+    border-width: focus.has-focus ? 2px : 0px;
+    border-color: Palette.accent;
+    accessible-role: button;
+    accessible-label: I18n.tr(root.text);
+    accessible-action-default => { root.clicked(); }
+    Glyph { x: 14px; y: (parent.height - self.height) / 2; kind: root.icon; ink: root.selected ? Palette.ink : Palette.muted; }
+    Text { x: 46px; y: 0px; width: parent.width - 54px; height: parent.height; text: I18n.tr(root.text); color: root.selected ? Palette.ink : Palette.muted; font-size: 12px; font-weight: root.selected ? 600 : 400; vertical-alignment: center; }
+    focus := FocusScope {
+        key-pressed(event) => {
+            if event.text == Key.Space || event.text == Key.Return { root.clicked(); return accept; }
+            return reject;
+        }
+    }
+    touch := TouchArea { clicked => { focus.focus(); root.clicked(); } }
+}
+
+export component PresetChoice inherits Rectangle {
+    in property <string> title;
+    in property <string> detail;
+    in property <bool> selected;
+    in property <bool> enabled: true;
+    callback clicked;
+    forward-focus: focus;
+    min-height: 54px;
+    border-radius: 12px;
+    background: root.selected ? Palette.selected : touch.has-hover ? Palette.hover : Palette.button;
+    border-width: focus.has-focus ? 2px : 1px;
+    border-color: focus.has-focus ? Palette.accent : Palette.line;
+    opacity: root.enabled || root.selected ? 1 : 0.5;
+    accessible-role: button;
+    accessible-label: I18n.tr(root.title + ", " + root.detail);
+    accessible-enabled: root.enabled;
+    accessible-action-default => { if root.enabled { root.clicked(); } }
+    VerticalLayout {
+        padding: 10px; spacing: 5px;
+        Text { text: I18n.tr(root.title); color: Palette.ink; font-size: 13px; font-weight: 600; }
+        Text { text: I18n.tr(root.detail); color: Palette.muted; font-size: 10px; }
+    }
+    if root.selected : Glyph { kind: "check"; ink: Palette.ink; x: parent.width - 32px; y: 18px; width: 16px; height: 16px; }
+    focus := FocusScope {
+        enabled: root.enabled;
+        key-pressed(event) => {
+            if event.text == Key.Space || event.text == Key.Return { root.clicked(); return accept; }
+            return reject;
+        }
+    }
+    touch := TouchArea { enabled: root.enabled; clicked => { focus.focus(); root.clicked(); } }
+}
+
+export component SessionMetric inherits Rectangle {
+    in property <string> value;
+    in property <string> label;
+    min-width: 0px; min-height: 76px;
+    border-radius: 10px; background: Palette.surface;
+    border-width: 1px; border-color: Palette.line;
+    VerticalLayout { padding: 10px; spacing: 3px; alignment: start;
+        Text { text: root.value; color: Palette.ink; font-size: 25px; font-weight: 700; }
+        Text { text: root.label; color: Palette.muted; font-size: 10px; min-width: 0px; wrap: word-wrap; }
+    }
+}
+
+export component ProgressRing inherits Rectangle {
+    in property <float> remaining: 1;
+    in property <color> accent: Palette.accent;
+    out property <float> amount: max(0.0001, min(0.9999, root.remaining));
+    out property <float> end-x: 160 + 147 * Math.sin(self.amount * 360deg);
+    out property <float> end-y: 160 - 147 * Math.cos(self.amount * 360deg);
+    background: transparent;
+    Rectangle {
+        border-radius: self.width / 2;
+        background: Palette.panel;
+        border-width: 1px; border-color: Palette.line;
+    }
+    Path {
+        viewbox-width: 320; viewbox-height: 320;
+        commands: "M160 13 A147 147 0 1 1 159.99 13";
+        stroke: #8888884d; stroke-width: 10px;
+    }
+    if root.remaining > 0 : Path {
+        viewbox-width: 320; viewbox-height: 320;
+        stroke: root.accent; stroke-width: 10px; stroke-line-cap: round;
+        MoveTo { x: 160; y: 13; }
+        ArcTo { radius-x: 147; radius-y: 147; large-arc: root.amount > 0.5; sweep: true; x: root.end-x; y: root.end-y; }
+    }
+}

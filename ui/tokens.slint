@@ -1,0 +1,18 @@
+// Copyright (C) 2026 Yu Prananda
+// SPDX-License-Identifier: GPL-3.0-only
+
+export global Palette {
+    in-out property <bool> dark: true;
+    out property <ColorScheme> standard-scheme: dark ? ColorScheme.dark : ColorScheme.light;
+    out property <color> background: dark ? #1f1f1f : #f3f3f3;
+    out property <color> surface: dark ? #333333 : #ffffff;
+    out property <color> sidebar: dark ? #1f1f1f : #f3f3f3;
+    out property <color> panel: dark ? #2b2b2bed : #f6f6f6f2;
+    out property <color> ink: dark ? #f5f5f5 : #252525;
+    out property <color> muted: dark ? #bfbfbf : #5f5f5f;
+    out property <color> accent: dark ? #c7c7c7 : #3a3a3a;
+    out property <color> line: dark ? #ffffff26 : #3a3a3a26;
+    out property <color> selected: dark ? #5d5d5d : #dedede;
+    out property <color> button: dark ? #ffffff0c : #3a3a3a08;
+    out property <color> hover: dark ? #ffffff1c : #3a3a3a14;
+}

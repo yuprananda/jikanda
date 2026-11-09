@@ -1,0 +1,10 @@
+{
+  "repository": "https://github.com/SSheldon/rust-dispatch",
+  "commit": "82d6c7a5b75dc0c71c3f46f87bb6c16a476f7748",
+  "license_declaration": "Cargo.toml: MIT",
+  "authors": [
+    "Steven Sheldon"
+  ],
+  "canonical_text_source": "https://github.com/spdx/license-list-data/blob/31846481de7ea17d92f2f46fad76abe58b2e9bb0/text/MIT.txt",
+  "note": "Upstream omits standalone text; source-only notice and canonical terms supplied."
+}

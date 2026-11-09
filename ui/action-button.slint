@@ -1,0 +1,41 @@
+// Copyright (C) 2026 Yu Prananda
+// SPDX-License-Identifier: GPL-3.0-only
+
+import { I18n } from "i18n.slint";
+import { Palette } from "tokens.slint";
+
+export component ActionButton inherits Rectangle {
+    in property <string> text;
+    in property <length> text-size: 13px;
+    in property <length> horizontal-padding: 8px;
+    in property <bool> enabled: true;
+    in property <bool> selected: false;
+    callback clicked;
+    forward-focus: focus;
+    min-width: 80px;
+    min-height: 36px;
+    preferred-height: 36px;
+    vertical-stretch: 0;
+    clip: true;
+    border-radius: 10px;
+    background: touch.pressed ? Palette.line : root.selected ? Palette.selected : touch.has-hover ? Palette.hover : Palette.button;
+    border-width: focus.has-focus ? 2px : 1px;
+    border-color: focus.has-focus ? Palette.accent : Palette.line;
+    opacity: root.enabled ? 1 : 0.45;
+    accessible-role: button;
+    accessible-label: I18n.tr(root.text);
+    accessible-enabled: root.enabled;
+    accessible-action-default => { if root.enabled { root.clicked(); } }
+    Text { x: root.horizontal-padding; y: 0px; width: max(0px, parent.width - 2 * root.horizontal-padding); height: parent.height; overflow: elide; text: I18n.tr(root.text); color: Palette.ink; font-size: root.text-size; horizontal-alignment: center; vertical-alignment: center; }
+    focus := FocusScope {
+        enabled: root.enabled;
+        key-pressed(event) => {
+            if event.text == " " || event.text == "\n" || event.text == Key.Return {
+                root.clicked();
+                return accept;
+            }
+            return reject;
+        }
+    }
+    touch := TouchArea { enabled: root.enabled; clicked => { focus.focus(); root.clicked(); } }
+}

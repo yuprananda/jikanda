@@ -1,0 +1,37 @@
+name: Bug report
+description: Report a reproducible problem in Jikanda
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Please remove personal session names, tasks, notes, and file paths from screenshots/logs.
+  - type: input
+    id: version
+    attributes:
+      label: Jikanda version
+      placeholder: 0.1.0-beta.1
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS and display scaling
+      placeholder: Windows 11 x64, 125%, one monitor
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Optional screenshot or error message

@@ -1,0 +1,8 @@
+{
+  "repository": "https://github.com/jni-rs/jni-rs",
+  "commit": "5ae9458a4ec44c5318f37ddc7569c1d4ae8a69e7",
+  "files": [
+    "LICENSE-APACHE",
+    "LICENSE-MIT"
+  ]
+}

@@ -1,0 +1,10 @@
+// Copyright (C) 2026 Yu Prananda
+// SPDX-License-Identifier: GPL-3.0-only
+
+export global I18n {
+    in-out property <bool> indonesian: false;
+    pure callback english(string) -> string;
+    public pure function tr(value: string) -> string {
+        return I18n.indonesian ? value : I18n.english(value);
+    }
+}

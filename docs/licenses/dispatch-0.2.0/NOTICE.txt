@@ -1,0 +1,5 @@
+dispatch 0.2.0 is inactive macOS/iOS source, not linked into the Windows executable.
+The published Cargo.toml declares MIT and lists Steven Sheldon as author.
+Its pinned upstream revision omits a standalone license file. Original source and
+license declaration are retained in the vendor collection; unmodified canonical
+MIT terms from SPDX are supplied separately here. No copyright year is invented.
