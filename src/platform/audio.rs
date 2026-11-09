@@ -113,8 +113,10 @@ mod tests {
             assert_eq!(u32::from_le_bytes(bytes[24..28].try_into().unwrap()), 44100);
             assert_eq!(u16::from_le_bytes(bytes[34..36].try_into().unwrap()), 16);
             let samples: Vec<i16> = bytes[44..]
-                .chunks_exact(2)
-                .map(|s| i16::from_le_bytes([s[0], s[1]]))
+                .as_chunks::<2>()
+                .0
+                .iter()
+                .map(|s| i16::from_le_bytes(*s))
                 .collect();
             assert!(samples.len() <= 44100 * 12 / 10);
             assert_eq!(samples[0], 0);
