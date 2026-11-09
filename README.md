@@ -42,9 +42,12 @@ restart. See [time and storage behavior](docs/privacy-and-storage.md).
 
 ## Install the Windows beta
 
-1. Download `Jikanda-0.1.0-beta.1-windows-x64.zip` from the release assets when published.
-2. Extract the whole ZIP to a permanent folder, such as `%LOCALAPPDATA%/Programs/Jikanda`.
-3. Run `jikanda.exe`. The optional `install-windows.ps1` creates a Start menu shortcut.
+1. Download `Jikanda-0.1.0-beta.1-windows-x64-setup.exe` from the release assets.
+2. Run Setup to install for your user and create a Start menu shortcut.
+3. Open Jikanda from Start. Uninstall through Windows Settings > Apps; local history is preserved.
+
+The Windows ZIP remains available as a portable alternative. Extract all files and
+run `jikanda.exe`. Installer build instructions and notices are in [installer/README.md](installer/README.md).
 
 Windows 11 x64 is the tested desktop platform. The beta is unsigned; verify the
 release source and SHA-256 if Windows displays a reputation warning. Windows 10,

@@ -50,3 +50,9 @@ Referensi:
 - [GNU GPLv3](https://www.gnu.org/licenses/gpl-3.0.html), terutama bagian 1 dan 4-6.
 - [Opsi lisensi Slint](https://slint.dev/terms-and-conditions).
 - [Kompatibilitas Apache 2.0 dan GPLv3](https://www.apache.org/licenses/GPL-compatibility).
+# Windows installer
+
+The installer uses unmodified Inno Setup 7.1.1, under its own permissive Inno Setup
+License. Copyright notices and provenance are retained in `installer/notices/`
+and installed as `installer-notices/`. Jikanda and the installer build scripts remain
+GPL-3.0-only. See `installer/README.md` for reproducible packaging instructions.

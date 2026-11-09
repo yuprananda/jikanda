@@ -4,7 +4,15 @@
 
 ## Windows 11 x64
 
-Download the Windows ZIP from [official releases](https://github.com/yuprananda/jikanda/releases).
+Download `Jikanda-0.1.0-beta.1-windows-x64-setup.exe` from
+[official releases](https://github.com/yuprananda/jikanda/releases). Run Setup;
+it installs to `%LOCALAPPDATA%/Programs/Jikanda` for the current user, creates a
+Start menu shortcut, and offers an optional desktop shortcut. No administrator
+access is needed. Setup checks for the Microsoft Visual C++ x64 runtime.
+
+### Portable alternative
+
+Download the Windows ZIP from the same release.
 Extract **all files** to a permanent folder, such as `%LOCALAPPDATA%/Programs/Jikanda`,
 then run `jikanda.exe`. Do not run inside the ZIP. No account, administrator access,
 background service, or application internet connection is required.
@@ -53,7 +61,11 @@ Close Jikanda before replacing files; Windows locks a running executable. Keep t
 installation folder separate from `%LOCALAPPDATA%/Jikanda`, where settings, history,
 and default exports live. Back up `state.json` before testing a beta.
 
-To uninstall, close Jikanda and remove the app folder and its Start menu shortcut.
+For an installed copy, close Jikanda and run the newer Setup to update. Uninstall
+through Windows Settings > Apps > Jikanda. The uninstaller preserves local data
+and unrelated files; it does not enable autostart or install a background service.
+
+For a portable copy, close Jikanda and remove the app folder and its Start menu shortcut.
 History remains until you deliberately remove the data folder. The app's notification
 identity is under `HKCU/Software/Classes/AppUserModelId/YuPrananda.Jikanda`; this
 app-specific registry key can also be removed on uninstall. No startup entries or

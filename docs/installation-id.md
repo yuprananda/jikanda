@@ -5,6 +5,13 @@ divalidasi. Unduh dari [GitHub Releases resmi](https://github.com/yuprananda/jik
 
 ## Memasang
 
+Unduh `Jikanda-0.1.0-beta.1-windows-x64-setup.exe`, lalu jalankan Setup.
+Pemasangan hanya untuk pengguna saat ini, tanpa administrator, dengan shortcut
+Start menu dan pilihan shortcut desktop. Lokasi default: `%LOCALAPPDATA%/Programs/Jikanda`.
+Setup memeriksa ketersediaan runtime Microsoft Visual C++ x64.
+
+### Alternatif portable
+
 1. Unduh ZIP Windows, bukan arsip source.
 2. Ekstrak seluruh ZIP ke folder permanen, misalnya `%LOCALAPPDATA%/Programs/Jikanda`.
 3. Jalankan `jikanda.exe`, bukan dari dalam ZIP. Tidak perlu akun atau administrator.
@@ -42,14 +49,18 @@ Get-FileHash ./Jikanda-0.1.0-beta.1-windows-x64.zip -Algorithm SHA256
 
 ## Memperbarui
 
-Tutup Jikanda dahulu; Windows mengunci exe yang sedang terbuka. Ekstrak versi baru
+Untuk versi installer, tutup Jikanda lalu jalankan Setup versi baru. Untuk portable,
+tutup Jikanda dahulu; Windows mengunci exe yang sedang terbuka. Ekstrak versi baru
 lalu ganti berkas aplikasi. Data tetap di `%LOCALAPPDATA%/Jikanda`, terpisah dari
 pemasangan. Cadangkan `state.json` sebelum mencoba beta. Bila aplikasi dipindahkan,
 hapus shortcut lama lalu buat ulang.
 
 ## Menghapus
 
-Tutup aplikasi, hapus folder aplikasi dan shortcut Start menu. Riwayat tetap ada.
+Versi installer: tutup aplikasi lalu buka Settings Windows > Apps > Jikanda > Uninstall.
+Riwayat, pengaturan, dan ekspor tetap disimpan. Tidak ada autostart atau layanan background.
+
+Versi portable: tutup aplikasi, hapus folder aplikasi dan shortcut Start menu. Riwayat tetap ada.
 Jika ingin menghapus data juga, hapus `%LOCALAPPDATA%/Jikanda` secara sengaja setelah
 mencadangkannya bila perlu. Identitas notifikasi aplikasi ada di registry
 `HKCU/Software/Classes/AppUserModelId/YuPrananda.Jikanda` dan dapat dihapus saat uninstall.

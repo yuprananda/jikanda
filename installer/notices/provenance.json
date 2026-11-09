@@ -1,0 +1,10 @@
+{
+  "tool": "Inno Setup",
+  "version": "7.1.1 x64",
+  "upstream_release": "https://github.com/jrsoftware/issrc/releases/tag/is-7_1_1",
+  "compiler_download_sha256": "8a5a6711c3766a6e5fb74f280ba0e3551e719ce94538d901fdbd1f8f9920b3f0",
+  "authenticode_status": "Valid",
+  "authenticode_publisher": "Pyrsys B.V.",
+  "compiler_distribution": "Unmodified official build; portable mode; not bundled in Jikanda",
+  "source": "https://github.com/jrsoftware/issrc/tree/is-7_1_1"
+}
